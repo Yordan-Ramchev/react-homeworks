@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
-class PostList extends Component {
+class PostListItem extends Component {
   state = {
     isHidden: false,
     isLiked: false,
     votes: this.props.votes
   };
 
-  hidePost = () => {
-    this.setState({ isHidden: true });
-  };
+  // hidePost = () => {
+  //   this.setState({ isHidden: true });
+  // };
 
   likePost = () => {
     let getVotes = this.state.votes;
@@ -50,7 +50,7 @@ class PostList extends Component {
             >
               &hearts;
             </button>
-            <button className="button" onClick={this.hidePost}>
+            <button className="button" onClick={() =>this.props.hidePost(this.props.id)}>
               Remove
             </button>
           </div>
@@ -60,4 +60,4 @@ class PostList extends Component {
   }
 }
 
-export default PostList;
+export default PostListItem;

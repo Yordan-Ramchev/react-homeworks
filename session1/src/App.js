@@ -5,7 +5,7 @@ import "bulma/css/bulma.css";
 import "./App.css";
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(POSTS);
 
   useEffect(() => {
     setPosts(POSTS);
