@@ -1,0 +1,1673 @@
+<page:element type="page">
+  <div id="dr_ThreePgCheckoutShoppingCart" class="dr_Content">
+    <div id="dr_ShoppingCart">
+      <page:element type="sslLogo">
+				<div id="geo-logo">&#160;<div class="dr_ssl"><img><page:attribute name="src"><get:value data="sslLogoImageSrc"/></page:attribute><page:attribute name="alt"><get:text key="SSL_SECURE"/></page:attribute></img></div></div>
+			</page:element>
+            <page:element type="continueShopping">
+				<if:exists data="cart">
+					<if:notEqual data="hasSubscripitonRenewalLineItem" value="true">
+						
+					</if:notEqual>
+					<!-- <if:notExists data="hasSubscripitonRenewalLineItem">
+                    <if:exists data="continueShoppingLinkUrl">
+                        <div id="dr_continueShoppingButton">
+                            <page:comment>&#160;</page:comment>
+                            <page:element type="page-continueShoppingLink">
+                                <a id="dr_continueShoppingBtn">
+                                    <page:attribute name="href"><get:value data="continueShoppingLinkUrl"/></page:attribute>
+                                    <get:text key="BTN_CONTINUE_SHOPPING"/>
+                                </a>
+                            </page:element>
+                        </div>
+                    </if:exists>
+					</if:notExists> -->
+				</if:exists>
+			</page:element>
+      <page:element type="3pgHeader">
+				<div id="dr_ThreePgShoppingCartHeader"><h1><get:text key="SHOPPING_CART_HEADER"/></h1></div>
+			</page:element>
+      <page:element type="banners">
+				<if:exists data="banners">
+					<ul id="dr_banner_ads">
+						<loop:each list="banners">
+							<if:exists data="bannersSiteOptimizerTracking">
+								<get:value data="bannersSiteOptimizerTracking" escape="no"/>
+							</if:exists>
+						<li>
+							<page:element type="bannerLink">
+								<a>
+								<page:attribute name="href"><get:value data="bannerLinkUrl"/></page:attribute>
+								<page:element type="bannerImage">
+									<img>
+									<page:attribute name="src"><get:value data="offerImageSrc"/></page:attribute>
+									</img>
+								</page:element>
+								</a>
+							</page:element>
+						</li>
+						</loop:each>
+					</ul>
+				</if:exists>
+				<if:exists data="payPalCreditBanner">
+					<div id="payPalCreditBanner" class="hidden-xs">
+						<get:value data="payPalCreditBanner" escape="no"/>
+					</div>
+				</if:exists>
+			</page:element>
+      <page:element type="sessionTimedoutMessage">
+				<if:equal data="redirectToCartPageOnSessionTimedout" value="true">
+					<p class="alert alert-danger">
+						<get:text key="SESSION_EXPIRED_REDIRECT_TO_CART_MSG"/>
+					</p>
+				</if:equal>
+			</page:element>
+      <page:element type="excludedProductsErrorMessage">
+				<if:exists data="excludedProducts">
+					<h2 class="alert alert-danger"><get:text key="RESTRICTED_PRODUCTS"/></h2>
+					<ul>
+						<loop:each list="excludedProducts">
+						<li class="dr_bold"><get:value data="excludedProductName"/></li>
+						</loop:each>
+					</ul>
+				</if:exists>
+			</page:element>
+      <page:element type="errorStockMssg">
+				<if:exists data="errorStockMssg">
+				<p class="alert alert-danger"><get:value data="errorStockMssg" escape="no"/></p>
+				</if:exists>
+				<if:exists data="errorPurchasableMssg">
+				<p class="alert alert-danger"><get:value data="errorPurchasableMssg" escape="no"/></p>
+				</if:exists>
+			</page:element>
+      <page:element type="errorComboMssg">
+				<if:exists data="addComboFail">
+					<p class="alert alert-danger"><get:value data="addComboFail" escape="no"/></p>
+				</if:exists>
+				<if:exists data="rollbackComboFail">
+					<p class="alert alert-danger"><get:value data="rollbackComboFail" escape="no"/></p>
+				</if:exists>
+			</page:element>
+      <page:element type="errorAddItemMssg">
+				<if:exists data="errorAddItemMssg">
+					<p class="alert alert-danger"><get:value data="errorAddItemMssg" escape="no"/></p>
+				</if:exists>
+			</page:element>
+      <page:element type="errorABOMsg">
+				<if:exists data="errorABOMsg">
+					<p class="alert alert-danger"><get:text key="ABO_DUPLICATE_LINE_ITEM_NOT_ALLOWED"/></p>
+				</if:exists>
+			</page:element>
+      <page:element type="offerUsageLimitMessaging">
+				<if:exists data="offerUsageLimitMessaging">
+					<get:value data="offerUsageLimitMessaging" escape="no"/>
+				</if:exists>
+				<if:exists data="customBundleErrorMsg">
+					<if:notEqual data="customBundleErrorMsg" value="none">
+						 <p class="alert alert-warning"><get:value data="customBundleErrorMsg" escape="no"/></p>
+					</if:notEqual>
+				</if:exists>
+			</page:element>
+      <page:element type="logoutPurchasePlanReprice">
+				<if:equal data="purchasePlanLogoutReprice" value="true">
+					<p class="alert alert-warning"><get:text key="LOGOUT_PURCHASE_PLAN_REPRICED"/></p>
+				</if:equal>
+			</page:element>
+      <page:element type="purchaseRestriction">
+				<if:equal data="ItemsRemovedDueToPurchaseRestriction" value="true">
+					<p class="alert alert-danger"><get:text key="ITEMS_REMOVED_DUE_TO_PURCHASERESTRICTION"/></p>
+				</if:equal>
+			</page:element>
+      <page:element type="privateStoreOnlyItemRemovedMessage">
+				<if:equal data="ItemsRemovedDueToAvailableInPrivateStoreOnly" value="true">
+					<p class="alert alert-danger"><get:text key="ITEMS_REMOVED_DUE_TO_AVAILABLE_IN_PRIVATE_STORE_ONLY"/></p>
+				</if:equal>
+			</page:element>
+      <page:element type="emptyCartMessage">
+				<if:notExists data="cart">
+					<div class="dr_emptyCart">
+						<page:element type="sessionExpiredMessage">
+							<if:equal data="redirectToCartPageOnSessionExpired" value="true">
+								<p class="alert alert-danger">
+									<strong><get:text key="SESSION_TIMED_OUT"/></strong><br/>
+									<get:text key="YOUR_SESSION_HAS_TIMED_OUT"/>
+								</p>
+							</if:equal>
+						</page:element>
+						<h2><get:text key="YOUR_SHOPPING_CART_IS_CURRENTLY_EMPTY"/></h2>
+						<if:exists data="continueShoppingLinkUrl">
+							<div id="dr_continueShoppingButton">
+								<page:comment>&#160;</page:comment>
+								<page:element type="continueShoppingLink">
+									<a id="dr_continueShoppingBtn">
+										<page:attribute name="href"><get:value data="continueShoppingLinkUrl"/></page:attribute>
+										<get:text key="BTN_CONTINUE_SHOPPING"/>
+									</a>
+								</page:element>
+							</div>
+						</if:exists>
+					</div>
+				</if:notExists>
+			</page:element>
+			
+      <page:element type="shoppingCart">
+				<if:exists data="cart">
+					<page:element type="unsupportedProductInLocaleErrorMessage">
+						<if:exists data="unsupportedProductInLocale">
+						<p><get:text key="CART_HAS_UNSUPPORTED_PRODUCTS_IN_LOCALE"/></p>
+						</if:exists>
+					</page:element>
+					<page:element type="exportControls">
+						<if:exists data="exportControls">
+						<p><get:text key="CART_HAS_EXPORT_CONTROLS"/></p>
+						</if:exists>
+					</page:element>
+					<page:element type="currencySelector">
+						<if:greaterThan list="currencies" length="1">
+							<div id="dr_currencySelector">
+								<form:get>
+									<div>
+										<label for="currencySelector"><strong><get:text key="SELECT_CURRENCY_COLON"/></strong></label>
+										<page:element type="currencyDropdown">
+											<select id="currencySelector" name="currency">
+												<loop:each list="currencies">
+													<option>
+														<if:equal data="currencyCode" compareData="cartCurrency">
+															<page:attribute name="selected">selected</page:attribute>
+														</if:equal>
+														<get:value data="currencyCode"/>
+													</option>
+												</loop:each>
+											</select>
+										</page:element>
+									</div>
+								</form:get>
+							</div>
+						</if:greaterThan>
+					</page:element>
+					<page:element type="shippingForm">
+						<if:equal data="shippingRequired" value="true">
+							<form:post type="EstimateShippingCostForm" name="EstimateShippingCostForm">
+								<form:input type="hidden" name="operation" value="update"/>
+								<form:input type="hidden" name="shippingOptionID" data="defaultShippingOption"/>
+								<form:input type="hidden" name="country" data="defaultShippingZone"/>
+							</form:post>
+						</if:equal>
+					</page:element>
+					<page:element type="cartForm">
+						<form:post type="ShoppingCartForm" name="ShoppingCartForm">
+							<page:element type="referenceNumber">
+								<div id="dr_orderNumber">
+									<!-- keep order number in <fieldset> to prevent iOS from converting it to a link -->
+									<fieldset>
+										<legend><get:text key="REFERENCE_NUMBER_COLON"/></legend>
+										<span>
+											<strong><get:text key="REFERENCE_NUMBER_COLON"/></strong>&#160;<get:value data="orderNumber"/>
+										</span>
+									</fieldset>
+								</div>
+							</page:element>
+							<page:element type="freeShippingOffer">
+								<if:exists data="freeShippingOffer">
+								<h2 class="dr_freeShippingOfferText"><get:value data="freeShippingOffer" escape="no"/></h2>
+								</if:exists>
+								<if:exists data="freeShippingOfferShippingMethod">
+								<h2 class="dr_freeShippingOfferText"><get:value data="freeShippingOfferShippingMethod" escape="no"/></h2>
+								</if:exists>
+							</page:element>
+							<page:element type="sessionExpiredMessage">
+								<if:equal data="redirectToCartPageOnSessionExpired" value="true">
+									<p class="alert alert-danger">
+										<strong><get:text key="SESSION_TIMED_OUT"/></strong><br/>
+										<get:text key="YOUR_SESSION_HAS_TIMED_OUT"/>
+									</p>
+								</if:equal>
+							</page:element>
+							<page:element type="feesRepricedMessage">
+								<if:equal data="feesRepriced" value="true">
+									<div class="dr_clearBoth"><page:comment>&#160;</page:comment></div>
+									<p class="alert alert-danger"><get:text key="CART_REPRICE_MESSAGE"/></p>
+								</if:equal>
+							</page:element>
+							<page:element type="cartTable">
+								<div id="dr_shoppingCartTable">
+									<div class="loading" style="display:none;">&#160;</div>
+									<if:equal data="callingPageID" value="QuickBuyCartPage">
+										<div class="row" id="fc-shoppingcart-panel">
+											<div id="fc-summary-control" class="col-xs-8 no-gutter">
+												<a href="javascript:void(0);"><get:text key="VIEW_ORDER_SUMMARY"/></a>
+											</div>
+											<div id="fc-summary-price" class="col-xs-4 no-gutter">&#160;</div>
+										</div>
+									</if:equal>
+									<div class="container-fluid">
+										<div id="dr_cartTbl">
+											<page:element type="cartTableHeader">
+												<div id="dr_cartTableHeader">
+													<div class="row hidden-xs hidden-sm">
+														<page:element type="cartTableQuantityHeader">
+															<div class="col-xs-3 col-sm-2 col-md-4">
+																<div class="dr_qty dr_col">
+																	<get:text key="QUANTITY"/>
+																</div>
+															</div>
+														</page:element>
+														<page:element type="cartTableProductHeader">
+															<div class="col-xs-4 col-sm-6 col-md-5">
+																<div class="dr_productName dr_col">
+																	<get:text key="PRODUCT_NAME"/>
+																</div>
+															</div>
+														</page:element>
+														<page:element type="cartTablePriceHeader">
+															<div class="col-xs-5 col-sm-4 col-md-3 text-right text-nowrap">
+																<div class="dr_price dr_col">
+																	<if:equal data = "displayPriceWithVat" value="false">
+																		<get:text key="PRICE"/>
+																	</if:equal>
+																	<if:notEqual data = "displayPriceWithVat" value="false">
+																		<get:text key="PRICE_WITH_VAT"/>
+																	</if:notEqual>
+																</div>
+															</div>
+														</page:element>
+													</div>
+												</div>
+											</page:element>
+											<page:element type="cartTableBody">
+												<loop:each list="lineItems">
+													<if:exists data="customBundlePriceFlag">
+														<if:equal data="customBundlePriceFlag" value="true">
+															<div class="dr_customBundlePrice">
+																<div class="row">
+																	<div class="col-xs-12 text-right text-nowrap">
+																		<div class="dr_price dr_totals dr_col">
+																			<if:exists data="customBundlePrice">
+																				<get:text key="DRIVER_LINE_ITEM_GROUP_SUB_TOTAL"/>:&#160;<get:value data="customBundlePrice"/>
+																			</if:exists>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:equal>
+													</if:exists>
+													<div class="dr_lineItem">
+														<div class="row">
+															<page:element type="cartTableQuantityCell">
+																<div class="col-xs-3 col-sm-2 col-md-4">
+																	<div class="dr_qty dr_col cartLineItem">
+																		<form:input type="hidden" data="lineItemID"/>
+																		<page:element type="lineItemQuantity">
+																			<page:element type="lineItemQuantityUpdate">
+																				<if:equal data="quantityUpdatable" value="true">
+																					<div class="dr_updatableQty">
+																						<form:input type="text" data="quantity" class="dr_qtyInput" size="2" title="quantity" maxlength="5"/>
+																					</div>
+																					<div class="dr_updateQtyLink">
+																						<xsl:element name="input">
+																							<page:attribute name="type">submit</page:attribute>
+																							<page:attribute name="class">btn-link</page:attribute>
+																							<page:attribute name="value"><get:text key="BTN_UPDATE"/></page:attribute>
+																							<page:attribute name="title"><get:text key="BTN_UPDATE"/></page:attribute>
+																						</xsl:element>
+																					</div>
+																				</if:equal>
+																				<if:equal data="quantityUpdatable" value="false">
+																					<form:input type="hidden" data="quantity"/>
+																					<div class="dr_nonUpdatableQty">
+																						<get:value data="quantity"/>
+																					</div>
+																				</if:equal>
+																			</page:element>
+																		</page:element>
+																		<page:element type="lineItemRemoveLink">
+																			<if:equal data="rowDeletable" value="true">
+																				<div class="dr_removeItem">
+																					<a class="dr_removeItemLink">
+																						<page:attribute name="href">
+																							<page:element type="lineItemRemoveLinkUrl">
+																								<get:path action="RemoveItemFromRequisition/lineItemID."/><get:value data="lineItemID"/>
+																								<xsl:text>/nextAction.</xsl:text>
+																								<get:value data="currentAction"/>
+																							</page:element>
+																						</page:attribute>
+																						<page:attribute name="title"><get:text key="BTN_REMOVE"/></page:attribute>
+																						<page:attribute name="rel">nofollow</page:attribute>
+																						<get:text key="BTN_REMOVE"/>
+																					</a>
+																					<if:exists data="customBundleOfferID">
+																						<a class="dr_removeItemLink">
+																							<page:attribute name="href"><get:path action="RemoveItemFromRequisition/lineItemID."/><get:value data="lineItemID"/><xsl:text>/nextAction.</xsl:text>DisplayProductPickerPage/OfferID.<get:value data="customBundleOfferID"/></page:attribute>
+																							<page:attribute name="title"><get:text key="RESTART_SHOPPER_OFFER_LABEL"/></page:attribute>
+																							<page:attribute name="rel">nofollow</page:attribute>
+																							<get:text key="RESTART_SHOPPER_OFFER_LABEL" />
+																						</a>
+																					</if:exists>
+																				</div>
+																				<if:exists data="quantityError">
+																					<span class="alert alert-danger"><get:value data="quantityError" parentSelfClose="false" escape="no"/></span>
+																				</if:exists>
+																			</if:equal>
+																		</page:element>
+																	</div>
+																</div>
+															</page:element>
+															<page:element type="cartTableProductCell">
+																<div class="col-xs-9 col-sm-6 col-md-5">
+																	<div class="dr_productName dr_col cartLineItem">
+																		<page:element type="lineItemProductThumbnail">
+																			<if:exists data="productThumbnailSrc">
+																				<div class="prod_thumbnail">
+                                                                                        <a>
+                                                                                            <page:attribute name="data-toggle">modal</page:attribute>
+                                                                                            <page:attribute name="data-target">#drModal</page:attribute>
+                                                                                            <if:exists data="lineItemProductInfoURL">
+                                                                                                <page:attribute name="href"><get:value data="lineItemProductInfoURL"/></page:attribute>
+                                                                                                <page:attribute name="lineItemID"><get:value data="lineItemID"/></page:attribute>
+                                                                                            </if:exists>
+                                                                                            <if:exists data="lineItemProductVariationSelectorURL">
+                                                                                                <page:attribute name="href"><get:value data="lineItemProductVariationSelectorURL"/></page:attribute>
+                                                                                                <page:attribute name="class">dr_variationSelector</page:attribute>
+                                                                                            </if:exists>
+                                                                                                <img>
+                                                                                                    <page:attribute name="class">dr_productThumbnail</page:attribute>
+                                                                                                    <page:attribute name="src"><get:value data="productThumbnailSrc"/></page:attribute>
+                                                                                                    <page:attribute name="alt"><get:value data="productThumbnailAlt"/></page:attribute>
+                                                                                                </img>
+                                                                                        </a>
+																				</div>
+																			</if:exists>
+																		</page:element>
+																		<page:element type="lineItemProductControls">
+																			<if:equal data="productLocaleSupported" value="false">
+																				<get:text key="PRODUCT_UNSUPPORTED_IN_LOCALE"/>
+																			</if:equal>
+																			<if:equal data="productExport" value="Deny">
+																				<get:text key="PRODUCT_HAS_EXPORT_CONTROLS_ASTERISK"/>
+																			</if:equal>
+																		</page:element>
+																		<page:element type="lineItemProductNameLink">
+																			<if:equal data="lineItemCombineFlag" value="true">
+																				<page:element type="virtualProduct"/>
+																			</if:equal>
+																			<if:equal data="lineItemIsSubsPlanProduct" value="true">
+																				<if:equal data="lineItemUsageBasedBilling" value="true">
+																					<a target="_blank">
+																						<if:exists data="lineItemProductInfoURL">
+																							<page:attribute name="href"><get:value data="lineItemProductInfoURL"/></page:attribute>
+																							<page:attribute name="onclick">popUp(this.href,'productDetail',450,400);return false;</page:attribute>
+																							<page:attribute name="lineItemID"><get:value data="lineItemID"/></page:attribute>
+																						</if:exists>
+																						<if:exists data="lineItemProductVariationSelectorURL">
+																							<page:attribute name="href"><get:value data="lineItemProductVariationSelectorURL"/></page:attribute>
+																							<page:attribute name="class">dr_variationSelector</page:attribute>
+																						</if:exists>
+																						<span class="dr_lineItemProductName"><get:value data="lineItemProductAttribute:displayName" escape="no"/></span>
+                                                                                    </a>
+                                                                                    <div class="stock-status">
+                                                                                        <page:element type="stockStatusStatus"/>
+                                                                                    </div>
+                                                                                    SKU: <get:value data="lineItemProductAttribute:sku" escape="no"/>
+
+                                                                                    <get:value data="lineItemAttribute:crucialProductPageURL" escape="no"/>
+                                                                                    <page:element type="crucialProductPageURL" />
+																				</if:equal>
+																			</if:equal>
+																			<if:notEqual data="lineItemIsSubsPlanProduct" value="true">
+																				<if:notEqual data="lineItemCombineFlag" value="true">
+																					<a>
+																						<page:attribute name="data-toggle">modal</page:attribute>
+																						<page:attribute name="data-target">#drModal</page:attribute>
+																						<if:exists data="lineItemProductInfoURL">
+																							<page:attribute name="href"><get:value data="lineItemProductInfoURL"/></page:attribute>
+																							<if:equal data="lineItemEds" value="true">
+																								<page:attribute name="onclick">popUp(this.href,'ExtendedDLInfo',410,380);return false;</page:attribute>
+																							</if:equal>
+																							<if:equal data="lineItemCdtogo" value="true">
+																								<page:attribute name="onclick">popUp(this.href,'backupcd',410,300);return false;</page:attribute>
+																							</if:equal>
+																							<if:notEqual data="lineItemEds" value="true">
+																								<if:notEqual data="lineItemCdtogo" value="true">
+																									<page:attribute name="lineItemID"><get:value data="lineItemID"/></page:attribute>
+																								</if:notEqual>
+																							</if:notEqual>
+																						</if:exists>
+																						<if:exists data="lineItemProductVariationSelectorURL">
+																							<page:attribute name="href"><get:value data="lineItemProductVariationSelectorURL"/></page:attribute>
+																							<page:attribute name="class">dr_variationSelector</page:attribute>
+																						</if:exists>
+                                                                                        <span class="dr_lineItemProductName"><get:value data="lineItemProductAttribute:displayName" escape="no"/></span>
+                                                                                    </a>
+                                                                                    <div class="stock-status">
+                                                                                        <page:element type="stockStatusStatus"/>
+                                                                                    </div>
+
+                                                                                    <get:value data="lineItemAttribute:crucialProductPageURL" escape="no"/>
+                                                                                    SKU: <get:value data="lineItemAttribute:sku" escape="no"/>
+
+                                                                                    
+                                                                                    <page:element type="crucialProductPageURL" />
+																				</if:notEqual>
+																			</if:notEqual>
+																			<page:element type="lineItemOfferDescriptionInCart">
+																				<if:exists data="lineItemOfferDescriptionInCart">
+																					<div class="dr_liOfferDescription">
+																						<get:value data="lineItemOfferDescriptionInCart" escape="no"/>
+																					</div>
+																				</if:exists>
+																			 </page:element>
+																		</page:element>
+																		<page:element type="lineItemSubsTermAndRenewalType">
+																			<if:equal data="lineItemSubscription" value="true">
+																				<div class="dr_subs_terms">
+																					<if:exists data="lineItemFreeTrialMessage">
+																						<span class="dr_freeTrial"><get:value data="lineItemFreeTrialMessage"/></span><br/>
+																					</if:exists>
+																					<span class="dr_subs_term_text" style="margin-right:1px;"><get:text key="SUBSCRIPTION_TERM_COLON"/></span>
+																					<span class="dr_subs_term_value" style="margin-right:10px;"><get:value data="lineItemSubscriptionTerm"/></span>
+																					<span class="dr_renewal_type_text" style="margin-right:1px;"><get:text key="RENEWAL_TYPE_COLON"/></span>
+																					<span class="dr_renewal_type_value"><get:value data="lineItemRenewalType"/></span>
+																				</div>
+																			</if:equal>
+																		</page:element>
+																		<page:element type="lineItemCustomStockMessage">
+																			<if:exists data="lineItemCustomStockMessage">
+																				<p class="dr_stockMessage">
+																					<get:value data="lineItemCustomStockMessage"/>
+																				</p>
+																			</if:exists>
+																		</page:element>
+																		<page:element type="lineItemGifting">
+																			<if:equal data="lineItemIsGiftable" value="true">
+																				<img class="dr_gifting">
+																					<page:attribute name="src"><get:value data="gift_24.png"/></page:attribute>
+																					<page:attribute name="alt"><get:text key="YOU_MAY_PURCHASE_THIS_PRODUCT_AS_A_GIFT"/></page:attribute>
+																				</img>
+																			</if:equal>
+																		</page:element>
+																		<page:element type="lineItemUBBProduct">
+																			<if:exists data="lineItemUBBPricing">
+																				<div id="dr_ubbPricingInclude">
+																					<p id="dr_ubbPricingHeader"><get:text key="UBB_PRICING_HEADER"/></p>
+																					<if:equal data="lineItemIsTeiered" value="true">
+																						<loop:each list="lineItemPricingTiers">
+																							<get:value data="lineItemPricingTierLowerBound" escape="no"/>-
+																							<if:exists data="lineItemPricingTierUpperBound">
+																								<get:value data="lineItemPricingTierUpperBound" escape="no"/>
+																							</if:exists>
+																							<if:notExists data="lineItemPricingTierUpperBound">
+																								<get:text key="UBB_UNLIMITED_TEMPLATE"/>
+																							</if:notExists>
+																							&#160;<get:value data="lineItemPricingTierMeteringUnit" escape="no"/>:&#160;<get:value data="lineItemPricingTierPricing" escape="no"/>
+																							<if:equal data="lineItemPricingTierIsFlat" value="false">
+																								&#160;<get:text key="UBB_PRICING_PER_TEMPLATE"/>&#160;<get:value data="lineItemPricingTierMeteringUnit" escape="no"/>
+																							</if:equal><br />
+																						</loop:each>
+																					</if:equal>
+																					<if:equal data="lineItemIsTeiered" value="false">
+																						<p id="dr_ubbMeteringUnitPricing">
+																							<get:value data="lineItemUsagePricePoint" escape="no"/>
+																							<if:equal data="lineItemIsFlat" value="false">
+																								&#160;<get:text key="UBB_PRICING_PER_TEMPLATE"/>&#160;<get:value data="lineItemMeteringUnit" escape="no"/>
+																							</if:equal>
+																						</p>
+																					</if:equal>
+																					<if:exists data="lineItemPerBillingCycleFee">
+																						<p id="dr_ubbBillingCycleFees">
+																							<get:text key="UBB_PRICING_PLUS_TEMPLATE"/>&#160;
+																							<get:value data="lineItemPerBillingCycleFee" escape="no"/>&#160;
+																							<get:text key="UBB_PRICING_PER_BILLING_CYCLE_TEMPLATE"/>
+																						</p>
+																					</if:exists>
+																					<p id="dr_ubbPricingHint">
+																						<get:text key="UBB_PRICING_HINT_TEMPLATE"/>
+																					</p>
+																				</div>
+																			</if:exists>
+																		</page:element>
+																		<page:element type="lineItemABOProduct">
+																			<if:exists data="lineItemABOProductDetails">
+																				<loop:each list="lineItemABOProductDetails">
+																					<p class="dr_aboInfo">
+																						<span><get:value data="lineItemABOProductDetail1" escape="no"/></span>
+																						<if:exists data="lineItemABOProductDetail2">
+																							<br /><span><get:value data="lineItemABOProductDetail2" escape="no"/></span>
+																						</if:exists>
+																					</p>
+																				</loop:each>
+																			</if:exists>
+																		</page:element>
+																	</div>
+																</div>
+															</page:element>
+															<page:element type="cartTablePriceCell">
+																<if:equal data="lineItemUsageBasedBilling" value="true">
+																	<div class="col-xs-12 col-sm-4 col-md-3">
+																		<div class="dr_price dr_col">&#160;</div>
+																	</div>
+																</if:equal>
+																<if:equal data="lineItemUsageBasedBilling" value="false">
+																	<div class="col-xs-12 col-sm-4 col-md-3 text-right text-nowrap">
+																		<div class="dr_price dr_col">
+																			<if:equal data="displayPriceWithVat" value="false">
+																				<if:notEqual data="lineItemIncentive" value="empty">
+																					<span class="dr_strikePrice">
+																						<del>
+																							<page:element type="listPrice">
+																								<get:value data="listPrice"/>
+																							</page:element>
+																						</del><br/>
+																					</span>
+																				</if:notEqual>
+																				<page:element type="lineItemPrice">
+																					<get:value data="lineItemPrice"/>
+																				</page:element>
+																			</if:equal>
+																			<if:notEqual data="displayPriceWithVat" value="false">
+																				<if:notEqual data="lineItemIncentive" value="empty">
+																					<span class="dr_strikePrice">
+																						<del>
+																							<page:element type="listPriceWithVat">
+																								<get:value data="listPriceWithVat"/>
+																							</page:element>
+																						</del><br/>
+																					</span>
+																				</if:notEqual>
+																				<page:element type="lineItemPriceWithVat">
+																					<get:value data="lineItemPriceWithVat"/>
+																				</page:element>
+																			</if:notEqual>
+																			<!-- START eFinancing -->
+																			<if:exists data="lineItemEfinancingTerms">
+																				<if:equal data="lineItemHasPromoInEF" value="true">
+																					<div class="dr_lineItemEfinancing">
+																						<loop:each list="lineItemEfinancingTerms">
+																							<div class="dr_lineItemEfinancingDesp">
+																								<if:exists data="monthlyPaymentAmount"><span class="dr_monthlyAmt"><get:value data="monthlyPaymentAmount"/>/<get:text key="EF_MONTH"/></span>&#160;</if:exists><get:text key="EF_FOR"/>&#160;<span class="dr_durationMonths"><get:value data="durationInMonths"/>&#160;<get:text key="EF_MONTHS"/></span>&#44; &#160;<span class="dr_apr"><get:value data="interestRatePct"/>&#160;<get:text key="EF_APR"/></span>&#44; &#160;<span class="dr_totalRepayable"><get:value data="totalRepayable"/>&#160;<get:text key="EF_TOTAL_PAYMENT"/></span>
+																							</div>
+																							<div class="dr_eFinancingMoreInfo">
+																								<a>
+																									<page:attribute name="class">dr_eFinancingMoreInfoModal</page:attribute>
+																									<page:attribute name="href"><get:value data="termMoreInfoLink"/></page:attribute>
+																									<page:attribute name="data-toggle">modal</page:attribute>
+																									<page:attribute name="data-target">#drModal</page:attribute>
+																									<get:text key="MORE_INFO"/>
+																								</a>
+																							</div>
+																						</loop:each>
+																					</div>
+																				</if:equal>
+																			</if:exists>
+																			<!-- END eFinancing -->
+																		</div>
+																	</div>
+																</if:equal>
+															</page:element>
+														</div>
+													</div>
+													<page:element type="lineItemShipping">
+														<if:equal data="lineItemLevelShippingEnabled" value="true">
+															<if:equal data="lineItemShippingRequired" value="true">
+																<div class="dr_lineItemShipping">
+																	<div class="row">
+																		<div class="col-xs-3 col-sm-2">
+																			<div class="dr_col">&#160;</div>
+																		</div>
+																		<div class="col-xs-4 col-sm-5">
+																			<div class="dr_lineItemShippingOption dr_col">
+																				<form:input type="hidden" data="lineItemID"/>
+																				<label for="selectedShippingOptionID">
+																					<get:text key="SHIPPING_METHOD_COLON"/>
+																				</label>
+																				<form:select name="selectedShippingOptionID"  onChange="changeLineItemShipping(this)" data="selectedLineItemShippingOptionID">
+																					<loop:each list="lineItemShippingOption">
+																						<option>
+																							<if:equal data="shippingOptionValue" compareData="lineItemSelectedShippingOptionID">
+																								<page:attribute name="selected">selected</page:attribute>
+																							</if:equal>
+																							<page:attribute name="value"><get:value data="shippingOptionValue" escape="no"/></page:attribute>
+																							<get:value data="shippingOptionLabel" escape="no"/>
+																						</option>
+																					</loop:each>
+																				</form:select>
+																			</div>
+																		</div>
+																		<div class="col-xs-5 col-sm-5">
+																			<div class="dr_col">&#160;</div>
+																		</div>
+																	</div>
+																</div>
+															</if:equal>
+														</if:equal>
+													</page:element>
+													<page:element type="lineItemFees">
+														<loop:each list="lineItemFees">
+															<div class="dr_lineItemFee">
+																<div class="row">
+																	<div class="col-xs-7 col-sm-3">
+																		<div class="dr_productName dr_col">
+																			<if:equal data="lineItemFeeType" value="weee">
+																				<page:element type="lineItemFeeLink">
+																					<a>
+																						<page:attribute name="data-toggle">modal</page:attribute>
+																						<page:attribute name="data-target">#drModal</page:attribute>
+																						<page:attribute name="href"><get:value data="lineItemFeeInfoURL"/></page:attribute>
+																						<get:value data="lineItemFeeName"/>
+																					</a>
+																				</page:element>
+																			</if:equal>
+																			<if:equal data="lineItemFeeType" value="ewaste">
+																				<page:element type="lineItemFeeLink">
+																					<a>
+																						<page:attribute name="data-toggle">modal</page:attribute>
+																						<page:attribute name="data-target">#drModal</page:attribute>
+																						<page:attribute name="href"><get:value data="lineItemFeeInfoURL"/></page:attribute>
+																						<get:value data="lineItemFeeName"/>
+																					</a>
+																				</page:element>
+																			</if:equal>
+																			<if:notEqual data="lineItemFeeType" value="weee">
+																				<if:notEqual data="lineItemFeeType" value="ewaste">
+																					<get:value data="lineItemFeeName"/>
+																				</if:notEqual>
+																			</if:notEqual>              
+																		</div>
+																	</div>
+																	<div class="col-xs-5 col-sm-9 text-right text-nowrap">
+																		<div class="dr_price dr_col">
+																			<if:equal data="displayPriceWithVat" value="false">
+																				<get:value data="lineItemFeeAmount"/>
+																			</if:equal>
+																			<if:notEqual data="displayPriceWithVat" value="false">
+																				<get:value data="lineItemFeeAmountWithVat"/>
+																			</if:notEqual>          
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</loop:each>
+													</page:element>
+													<page:element type="lineItemOffers">
+														<if:exists data="customBundleLineItemFlag">
+															<if:equal data="customBundleLineItemFlag" value="false">
+																<if:exists data="lineItemCandyRackOffers">
+																	<if:exists data="lineItemCandyRackOffersSiteOptimizerTracking">
+																		<get:value data="lineItemCandyRackOffersSiteOptimizerTracking" escape="no"/>
+																	</if:exists>
+																	<loop:each list="lineItemCandyRackChildProducts">
+																		<if:equal data="childProductInventoryPurchasable" value="true">
+																			<div>
+																				<page:attribute name="class">dr_CandyRack dr_<get:value data="lineItemOfferType"/> dr_pid<get:value data="childProductID"/> dr_oiid<get:value data="childProductOfferInstanceID"/></page:attribute>
+																				<div class="row">
+																					<div class="col-md-9 col-md-offset-3 col-sm-12 col-sm-offset-0">
+																						<page:element type="candyRackChildProduct">
+																							<page:element type="childProductOfferThumbnail">
+																								<if:exists data="childProductImageSrc">
+																									<a class="dr_thumbnail">
+																										<page:attribute name="href"><get:path action="DisplayPage/id.ProductInterstitialDetailsPage"/>/productID.<get:value data="childProductID"/></page:attribute>
+																										<page:attribute name="data-toggle">modal</page:attribute>
+																										<page:attribute name="data-target">#drModal</page:attribute>
+																										<img>
+																											<page:attribute name="class"><get:value data="dr_childProductThumbnail"/></page:attribute>
+																											<page:attribute name="src"><get:value data="childProductImageSrc"/></page:attribute>
+																											<page:attribute name="alt"><get:value data="childProductName"/></page:attribute>
+																										</img>
+																									</a>
+																								</if:exists>
+																							</page:element>
+																							<page:element type="childProductName">
+																								<span class="dr_productName">
+																									<a>
+																										<page:attribute name="href"><get:path action="DisplayPage/id.ProductInterstitialDetailsPage"/>/productID.<get:value data="childProductID"/></page:attribute>
+																										<page:attribute name="data-toggle">modal</page:attribute>
+																										<page:attribute name="data-target">#drModal</page:attribute>
+																										<get:value data="childProductName"/>
+																									</a>
+																								</span>
+																							</page:element>
+																							<page:element type="childProductSalesPitchKey">
+																								<if:exists data="childProductSalesPitchKey">
+																									<span class="dr_productSalesPitch">
+																										<get:value data="childProductSalesPitchKey" escape="no"/>
+																									</span>
+																								</if:exists>
+																							</page:element>
+																							<page:element type="childProductPrice">
+																								<if:exists data="childProductPriceSiteOptimizerTracking">
+																									<get:value data="childProductPriceSiteOptimizerTracking" escape="no" />
+																								</if:exists>
+																								<span class="dr_price">
+																								<if:equal data="childProductDiscounted" value="true">
+																									<span class="dr_regularPrice">
+																									<span class="dr_regularPriceLabel"><get:text key="REGULAR_PRICE_COLON"/></span>
+																									<del><get:value data="childProductRegularPrice"/></del>
+																									</span>
+																								</if:equal>
+																								<get:value data="childProductPrice"/>
+																								</span>
+																							</page:element>
+																							<page:element type="lineItemCandyRackLink">
+																								<a class="dr_button">
+																								<page:attribute name="href">
+																									<page:element type="lineItemCandyRackLinkUrl">
+																										<get:path action="AcceptCandyRackOffer/lineItemID."/><get:value data="lineItemID"/>
+																										<xsl:text>/offerProductInstanceID.</xsl:text>
+																										<get:value data="lineItemOfferProductInstanceID"/>
+																									</page:element>
+																								</page:attribute>
+																								<if:equal data="lineItemOfferType" value="Cross-sell">
+																									<get:text key="ADD_ITEM_TO_ORDER"/>
+																								</if:equal>
+																								<if:equal data="lineItemOfferType" value="Up-sell">
+																									<get:text key="BTN_UPGRADE"/>
+																								</if:equal>
+																								</a>
+																							</page:element>
+																						</page:element>
+																					</div>
+																				</div>
+																			</div>
+																		</if:equal>
+																	</loop:each>
+																</if:exists>
+															</if:equal>
+														</if:exists>
+													</page:element>
+												</loop:each>
+												<page:element type="addOnServices">
+													<loop:each list="addOnServices">
+														<if:equal data="addOnServiceBannerResourceKey" value="CDTOGO_BANNER">
+															<div class="dr_backUpCD">
+																<div class="row">
+																	<div class="col-xs-12">
+																		<div class="dr_col">
+																			<page:element type="addOnServiceBackUpCd">
+																				<div id="dr_BackUpCDOffer">
+																				<loop:each list="addOnServiceProducts">
+																					<page:element type="addOnServiceBuyLink">
+																						<a class="dr_button">
+																							<page:attribute name="href">
+																								<page:element type="addOnServiceBuyLinkUrl">
+																									<get:path action="buy/productID."/><get:value data="addOnServiceProductID"/>
+																									<xsl:text>/offerProductInstanceID.</xsl:text>
+																									<get:value data="addOnServiceProductInstanceID"/>
+																								</page:element>
+																							</page:attribute>
+																							<get:text key="ADD_ITEM_TO_ORDER"/>
+																						</a>
+																					</page:element>
+																					<a class="dr_details">
+																						<page:attribute name="href"><get:path action="DisplayPage/id.BackUpCDInformationPage"/></page:attribute>
+																						<page:attribute name="data-toggle">modal</page:attribute>
+																						<page:attribute name="data-target">#drModal</page:attribute>
+																					<if:equal data="internationalBackupCD" value="true">
+																					<get:text key="ORDER_INTL_BACKUP_CD"/>
+																					</if:equal>
+																					<if:notEqual data="internationalBackupCD" value="true">
+																					<get:text key="ORDER_BACKUP_CD"/>
+																					</if:notEqual>
+																					</a>
+																					<page:element type="addOnServicePrice">
+																						<get:text key="CART_PRICE_SEPARATOR"/>
+																						<get:value data="addOnServicePrice"/>
+																					</page:element>
+																				</loop:each>
+																				</div>
+																			</page:element>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:equal>
+														<if:equal data="addOnServiceBannerResourceKey" value="EDS_BANNER">
+															<div class="dr_EDS">
+																<div class="row">
+																	<div class="col-xs-12">
+																		<div class="dr_col">
+																			<page:element type="addOnServiceEds">
+																				<div id="dr_ExtendedDownloadServiceOffer">
+																				<loop:each list="addOnServiceProducts">
+																					<page:element type="addOnServiceBuyLink">
+																						<a class="dr_button">
+																							<page:attribute name="href">
+																								<page:element type="addOnServiceBuyLinkUrl">
+																									<get:path action="buy/productID."/><get:value data="addOnServiceProductID"/>
+																									<xsl:text>/offerProductInstanceID.</xsl:text>
+																									<get:value data="addOnServiceProductInstanceID"/>
+																								</page:element>
+																							</page:attribute>
+																							<get:text key="ADD_ITEM_TO_ORDER"/>
+																						</a>
+																					</page:element>
+																					<a class="dr_details">
+																						<page:attribute name="href"><get:path action="DisplayPage/id.ExtendedDownloadServiceMerchInfoPage"/></page:attribute>
+																						<page:attribute name="target">_blank</page:attribute>
+																					<get:text key="EXTENDED_DOWNLOAD_SERVICE"/>
+																					</a>
+																					<page:element type="addOnServicePrice">
+																						<get:text key="CART_PRICE_SEPARATOR"/>
+																						<get:value data="addOnServicePrice"/>
+																					</page:element>
+																				</loop:each>
+																				</div>
+																			</page:element>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:equal>
+													</loop:each>
+												</page:element>
+												<page:element type="couponCode">
+													<if:notEqual data="showCouponCode" value="no">
+														<div class="dr_couponCode">
+															<div class="row">
+																<div class="col-xs-12">
+																	<div class="dr_col">
+																		<p><get:value data="promoCodeLabel" escape="no"/></p>
+																		<div id="promoCodeArea">
+																			<form:input type="hidden" name="popName" value="PointOfSale_CouponEntryField"/>
+																			<input name="ORIG_VALUE_couponCode" type="hidden" value=""/>
+																			<label for="promoCode" class="dr_label hidden"><get:text key="PROMO_CODE"/></label>
+																			<input name="couponCode" type="text" size="10" id="promoCode">
+																				<page:attribute name="value"><get:value data="couponCode" escape="no"/></page:attribute>
+																				<page:attribute name="placeholder"><get:text key="PROMO_CODE"/></page:attribute>
+																			</input>
+																			<page:element type="couponCodeButton">
+																				<input type="submit" class="dr_button" id="dr_couponCodeBtn">
+																					<page:attribute name="value"><get:text key="BTN_APPLY"/></page:attribute>
+																				</input>
+																			</page:element>
+																			<if:exists data="couponCodeError">
+																				<span class="alert alert-danger"><get:value data="couponCodeError" parentSelfClose="false" escape="no"/></span>
+																			</if:exists>
+																		</div>
+																		<get:value data="promoCodeJavascript" escape="no"/>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</if:notEqual>
+												</page:element>
+												<page:element type="cartTotals">
+													<page:element type="cartShippingRow">
+														<if:equal data="shippingRequired" value="true">
+															<div id="dr_shippingCartHeader">
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="dr_col">
+																			<if:equal data="displayPrice" value="true">
+																				<get:text key="ESTIMATED_SHIPPING"/>
+																			</if:equal>
+																			<if:equal data="displayPriceWithVat" value="true">
+																				<if:equal data="shippingTaxEstimated" value="true">
+																					<get:text key="ESTIMATED_SHIPPING_WITH_TAX_COLON"/>
+																				</if:equal>
+																				<if:notEqual data="shippingTaxEstimated" value="true">
+																					<get:text key="ESTIMATED_SHIPPING"/>
+																				</if:notEqual>
+																			</if:equal>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div id="dr_shippingEstimator">
+																<div class="row">
+																	<div class="col-xs-8 col-sm-8">
+																		<div class="dr_col">
+																			<label for="dr_shipCountry" class="dr_label hidden"><get:text key="SHIPPING_COUNTRY_COLON"/></label>
+																			<page:element type="shippingZoneDropdown">
+																				<select name="selectedCountry" id="dr_shipCountry" onChange="changeEstimatedShipping(this,this.form.shippingOptionID,document.EstimateShippingCostForm)">
+																				<loop:each list="shippingZones">
+																					<option>
+																					<if:equal data="shippingZoneValue" compareData="defaultShippingZone">
+																						<page:attribute name="selected">selected</page:attribute>
+																					</if:equal>
+																					<page:attribute name="value"><get:value data="shippingZoneValue"/></page:attribute>
+																					<get:value data="shippingZoneLabel"/>
+																					</option>
+																				</loop:each>
+																				</select>
+																			</page:element>
+																			<label for="dr_shipMethod" class="dr_label hidden"><get:text key="SHIPPING_METHOD_COLON"/></label>
+																			<if:exists data="lineItemLevelShippingEnabled">
+																				<if:notEqual data="lineItemLevelShippingEnabled" value="true">
+																					<page:element type="shippingOptionRadio">
+																						<div id="dr_shippingOptions">
+																							<loop:each list="shippingOptions">
+																								<if:exists data="shippingOptionValue">
+																									<div class="radio-wide">
+																										<input type="radio" name="shippingOptionID">
+																											<page:attribute name="id">dr_shippingMethod<get:value data="shippingOptionValue"/></page:attribute>
+																											<page:attribute name="value"><get:value data="shippingOptionValue"/></page:attribute>
+																											<if:equal data="shippingOptionValue" compareData="defaultShippingOption">
+																												<page:attribute name="checked">checked</page:attribute>
+																											</if:equal>
+																										</input>
+																										<label>
+																											<page:attribute name="for">dr_shippingMethod<get:value data="shippingOptionValue"/></page:attribute>
+																											<get:value data="shippingOptionLabel"/>
+																										</label>
+																									</div>
+																								</if:exists>
+																							</loop:each>
+																						</div>
+																						<page:element type="accessPointsInfo">
+																							<if:exists data="isAccessPoint">
+																								<if:equal data="isAccessPoint" value="true">
+																									<div id="dr_accessPointsInfo">
+																										<span class="dr_title">
+																											<strong><get:text key="ACCESS_POINTS"/></strong>
+																										</span>
+																										<span id="dr_expandAPDetails">
+																											(<get:text key="DETAILS"/>)
+																											<span id="dr_accessPointsDetails"><get:text key="ACCESS_POINTS_DETAILS"/></span>
+																										</span>
+																									</div>
+																								</if:equal>
+																							</if:exists>
+																						</page:element>
+																					</page:element>
+																				</if:notEqual>
+																			</if:exists>
+																			<if:notExists data="lineItemLevelShippingEnabled">
+																				<page:element type="shippingOptionRadio">
+																					<div id="dr_shippingOptions">
+																						<loop:each list="shippingOptions">
+																							<if:exists data="shippingOptionValue">
+																								<div class="radio-wide">
+																									<input type="radio" name="shippingOptionID">
+																										<page:attribute name="id">dr_shippingMethod<get:value data="shippingOptionValue"/></page:attribute>
+																										<page:attribute name="value"><get:value data="shippingOptionValue"/></page:attribute>
+																										<if:equal data="shippingOptionValue" compareData="defaultShippingOption">
+																											<page:attribute name="checked">checked</page:attribute>
+																										</if:equal>
+																									</input>
+																									<label>
+																										<page:attribute name="for">dr_shippingMethod<get:value data="shippingOptionValue"/></page:attribute>
+																										<get:value data="shippingOptionLabel"/>
+																									</label>
+																								</div>
+																							</if:exists>
+																						</loop:each>
+																					</div>
+																					<page:element type="accessPointsInfo">
+																						<if:exists data="isAccessPoint">
+																							<if:equal data="isAccessPoint" value="true">
+																								<div id="dr_accessPointsInfo">
+																									<span class="dr_title">
+																										<strong><get:text key="ACCESS_POINTS"/></strong>
+																									</span>
+																									<span id="dr_expandAPDetails">
+																										(<get:text key="DETAILS"/>)
+																										<span id="dr_accessPointsDetails"><get:text key="ACCESS_POINTS_DETAILS"/></span>
+																									</span>
+																								</div>
+																							</if:equal>
+																						</if:exists>
+																					</page:element>
+																				</page:element>
+																			</if:notExists>
+																		</div>
+																	</div>
+																	<div class="col-xs-4 col-sm-4 text-right text-nowrap">
+																		<div class="dr_price dr_totals dr_col">
+																			<if:exists data="lineItemLevelShippingEnabled">
+																				<if:notEqual data="lineItemLevelShippingEnabled" value="true">
+																					<if:equal data="displayPriceWithVat" value="false">
+																						<get:value data="totalShipping"/>
+																					</if:equal>
+																					<if:notEqual data="displayPriceWithVat" value="false">
+																						<get:value data="totalShippingWithVat"/>
+																					</if:notEqual>
+																				</if:notEqual>
+																				<if:equal data="lineItemLevelShippingEnabled" value="true">
+																					<loop:each list="lineItemLevelShippingTotal">
+																					 <div>
+																						 <span><get:value data="lineItemLevelShippingName"/>:&#160;:&#160;</span>
+																						 <if:equal data="displayPriceWithVat" value="false">
+																								<span class="dr_lineItemShippingPrice"><get:value data="lineItemLevelShippingPrice"/></span>
+																						 </if:equal>
+																						 <if:notEqual data="displayPriceWithVat" value="false">
+																								<span class="dr_lineItemShippingPrice"><get:value data="lineItemLevelShippingPriceWithTax"/></span>
+																						 </if:notEqual>
+																					 </div>
+																					</loop:each>
+																				</if:equal>
+																			</if:exists>
+																			<if:notExists data="lineItemLevelShippingEnabled">
+																				<if:equal data="displayPriceWithVat" value="false">
+																					<get:value data="totalShipping"/>
+																				</if:equal>
+																				<if:notEqual data="displayPriceWithVat" value="false">
+																					<get:value data="totalShippingWithVat"/>
+																				</if:notEqual>
+																			</if:notExists>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:equal>
+													</page:element>
+													<page:element type="cartLandedCostRow">
+														<if:exists data="landedCostState">
+															<if:notEqual data="landedCostState" value="NOT_ELIGIBLE">
+																<div id="dr_landedCostCartHeader">
+																	<div class="row">
+																		<div class="col-md-12">
+																			<div class="dr_col">
+																				<get:text key="DUTIES_AND_TARIFFS"/>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</if:notEqual>
+															<div id="dr_landedCost">
+																<div class="row">
+																	<if:exists data="landedCostError">
+																		<div class="col-xs-12">
+																			<div class="dr_col">
+																				<p id="dr_landedCostError" class="alert alert-danger"><get:value data="landedCostError" escape="no"/></p>
+																			</div>
+																		</div>
+																	</if:exists>
+																	<div class="col-xs-12 col-sm-8">
+																		<div class="dr_col">
+																			<if:equal data="landedCostState" value="ELIGIBLE">
+																				<a id="dr_landedCostLink" href="#"><get:text key="LANDED_COST_LINK_TEXT"/></a>
+																			</if:equal>
+																			<input name="ORIG_VALUE_landedCostPrepaid" type="hidden" value=""/>
+																			<input name="landedCostPrepaid" type="hidden">
+																				<page:attribute name="value"><get:value data="landedCostPrepaid"/></page:attribute>
+																			</input>
+																			<if:equal data="landedCostDropdownDisplayed" value="true">
+																				<page:element type="landedCostDropdown">
+																					<label class="dr_label" for="dr_landedCostOption"><get:text key="PREPAID_DUTY_AND_TARIFFS"/></label>
+																					<select id="dr_landedCostOption">
+																						<option value="false">
+																							<if:equal data="landedCostState" value="NOT_PREPAID">
+																								<page:attribute name="selected">selected</page:attribute>
+																							</if:equal>
+																							<get:text key="LANDED_COST_NOT_PREPAID_LABEL"/>
+																						</option>
+																						<option value="true">
+																							<if:equal data="landedCostState" value="PREPAID">
+																								<page:attribute name="selected">selected</page:attribute>
+																							</if:equal>
+																							<get:value data="landedCostPrepaidLabel" escape="no"/>
+																						</option>
+																					</select>
+																				</page:element>
+																			</if:equal>
+																		</div>
+																	</div>
+																	<div class="col-xs-7 col-sm-2 text-right text-nowrap">
+																		<div class="dr_qty dr_col">
+																			<if:equal data="landedCostState" value="PREPAID">
+																				<get:text key="DUTIES_AND_TARIFFS"/>
+																			</if:equal>
+																			<if:notEqual data="landedCostState" value="PREPAID">
+																				&#160;
+																			</if:notEqual>
+																		</div>
+																	</div>
+																	<div class="col-xs-5 col-sm-2 text-right text-nowrap">
+																		<div class="dr_price dr_totals dr_col">
+																			<if:equal data="landedCostState" value="PREPAID">
+																				<get:value data="landedCostDutiesAndTariffs"/>
+																			</if:equal>
+																			<if:notEqual data="landedCostState" value="PREPAID">
+																				&#160;
+																			</if:notEqual>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:exists>
+													</page:element>
+													<page:element type="shipOfferDescriptionInCarts">
+														<if:exists data="shipOfferDescriptionInCarts">
+															<loop:each list="shipOfferDescriptionInCarts">
+																<div class="dr_shippingOffer">
+																	<div class="row">
+																		<div class="col-xs-12">
+																			<div class="dr_col">
+																				<span class="dr_shippingOfferTitle"><get:text key="SHIPPING_OFFER_COLON"/></span> <span class="dr_shippingOfferDescription"><get:value data="shipOfferDescription"/></span>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</loop:each>
+														</if:exists>
+													</page:element>
+													<page:element type="cartDiscountRow">
+														<if:notEqual data="zeroIncentive" value="true">
+															<div id="dr_discountTotal">
+																<div class="row">
+																	<div class="col-xs-7 col-sm-10">
+																		<div class="dr_col">
+																			<get:text key="DISCOUNT"/>
+																		</div>
+																	</div>
+																	<div class="col-xs-5 col-sm-2 text-right text-nowrap">
+																		<div class="dr_price dr_totals dr_col">
+																			<get:text key="DASH"/><get:value data="totalIncentiveWithVat"/>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:notEqual>
+													</page:element>
+													<page:element type="orderOfferDescriptionInCart">
+														<if:exists data="orderOfferDescriptionInCart" >
+															<div class="row">
+																<div class="col-xs-12">
+																	<div id="dr_orderOffer" class="dr_col">
+																		<span class="dr_orderOfferTitle"><get:text key="ORDER_OFFER_COLON"/></span> <span class="dr_orderOfferDescription"><get:value data="orderOfferDescriptionInCart" escape="no"/></span>
+																	</div>
+																</div>
+															</div>
+														</if:exists>
+													</page:element>
+													<page:element type="cartSubTotalRow">
+														<if:equal data="onlyUbbProducts" value="false">
+															<div id="dr_priceTotal">
+																<div class="row">
+																	<div class="col-xs-7 col-sm-10 text-right">
+																		<div class="dr_col">
+																			<if:equal data="displayPrice" value="true">
+																				<get:text key="SUB_TOTAL"/>
+																			</if:equal>
+																			<if:equal data="displayPriceWithVat" value="true">
+																				<get:text key="SUB_TOTAL_WITH_VAT"/>
+																			</if:equal>
+																		</div>
+																	</div>
+																	<div class="col-xs-5 col-sm-2 text-right text-nowrap">
+																		<div class="dr_price dr_totals dr_col">
+																			<if:equal data="displayPriceWithVat" value="false">
+																				<get:value data="subTotal"/>
+																			</if:equal>
+																			<if:notEqual data="displayPriceWithVat" value="false">
+																				<get:value data="subTotalWithVat"/>
+																			</if:notEqual>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:equal>
+													</page:element>
+													<page:element type="installmentPricing">
+														<if:exists data="installmentAmountText">
+															<div id="dr_installmentsTotal">
+																<div class="row">
+																	<div class="col-xs-12 text-right">
+																		<div class="dr_totals dr_col">
+																			<get:value data="installmentAmountText"/>
+																			<form:input type="hidden" name="minInstallmentAmount" data="minInstallmentsAmt"/>
+																			<form:input type="hidden" name="maxInstallmentNumber" data="maxInstallmentsNum"/>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</if:exists>
+													</page:element>
+												</page:element>
+											</page:element>
+										</div>
+									</div>
+									<page:element type="landedCostDisclaimer">
+										<if:exists data="landedCostState">
+											<if:equal data="landedCostState" value="PREPAID">
+												<p id="dr_landedCostDisclaimer" class="dr_clearBoth text-right"><get:text key="LANDED_COST_DISCLAIMER"/></p>
+											</if:equal>
+										</if:exists>
+									</page:element>
+								</div>
+							</page:element>
+							<page:element type="preorderMessage">
+								<loop:each list="lineItems">
+									<if:exists data="lineItemPreorderMessage">
+										<p class="dr_preorderDelayedShipMsg dr_clearBoth"><get:value data="lineItemPreorderMessage"/></p>
+									</if:exists>
+								</loop:each>
+							</page:element>
+							<page:element type="autoRenewalTerms">
+								<if:exists data="displayAutoRenewalTerms">
+									<if:equal data="displayAutoRenewalTerms" value="true">
+										<div id="dr_autoRenewTermContainer">
+											<fieldset id="dr_autoRenew">
+												<legend><get:text key="AUTO-RENEWAL_PLAN_TERMS_HEADLINE"/></legend>
+												<h3><get:text key="AUTO-RENEWAL_PLAN_TERMS_HEADLINE"/></h3>
+												<div id="dr_optInAutoRenew">
+													<div class="dr_optInAutoRenewTerm">
+														<get:value data="autoRenewalTerms" escape="no" />
+													</div>
+													<div class="dr_optInAutoRenewAction">
+														<if:exists data="autoRenewalTermsError">
+															<if:equal data="autoRenewalTermsError" value="true">
+																<span id="arerror" class="dr_error"><get:text key="TERMS_TRIALAUTORENEWAL_OPTIN_ERROR"/></span><br/>
+															</if:equal>
+														</if:exists>
+														<div class="checkbox checkbox-wide">
+															<input type="hidden" name="autoRenewLogicExists" value="true" />
+															<input type="checkbox" name="autoRenewOptedInOnCheckout" id="autoRenewOptedInOnCheckout" />
+															<label for="autoRenewOptedInOnCheckout"><get:text key="AUTO-RENEWAL_AND_TRIAL_TERMS_AGREEMENT"/></label>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</if:equal>
+								</if:exists>
+							</page:element>
+							<page:element type="ubbAutoRenewalTerms">
+								<if:exists data="displayUBBAutoRenewalTerm">
+									<if:equal data="displayUBBAutoRenewalTerm" value="true">
+										<if:exists data="ubbAlreadyAccepted">
+											<input type="hidden" name="ubbRenewLogicExists" value="true" />
+											<input type="hidden" name="ubbOptedInOnCheckout" id="ubbOptedInOnCheckout" value="true" />
+										</if:exists>
+										<if:notExists data="ubbAlreadyAccepted">
+											<div id="dr_ubbAutoRenewTermContainer">
+												<fieldset id="dr_ubbAutoRenew">
+													<legend><get:text key="USAGE_BASED_BILLING_TERMS_HEADLINE_TEMPLATE"/></legend>
+													<h3><get:text key="USAGE_BASED_BILLING_TERMS_HEADLINE_TEMPLATE"/></h3>
+													<div id="dr_optInUBBAutoRenew">
+														<div class="dr_optInUbbAutoRenewTerm">
+															<get:text key="USAGE_BASED_BILLING_TERMS_TEMPLATE"/>
+														</div>
+														<div class="dr_optInUbbAutoRenewAction">
+															<if:exists data="ubbOptedInError">
+																<span class="alert alert-danger"><get:text key="TERMS_USAGE_BASED_BILLING_OPTIN_ERROR_TEMPLATE"/></span><br />
+															</if:exists>
+															<div class="checkbox checkbox-wide">
+																<input type="hidden" name="ubbRenewLogicExists" value="false" />
+																<input type="checkbox" name="ubbOptedInOnCheckout" id="ubbOptedInOnCheckout" />
+																<label class="dr_label" for="ubbOptedInOnCheckout"><get:text key="USAGE_BASED_BILLING_TERMS_AGREEMENT_TEMPLATE"/></label>
+															</div>
+														</div>
+													</div>
+												</fieldset>
+											</div>
+										</if:notExists>
+									</if:equal>
+								</if:exists>
+							</page:element>
+							<page:element type="futureSubscriptionRenewalState">
+								<if:exists data="futureSubRenewalStatePlan">
+									<div  class="container-fluid">
+										<div id="dr_futureSubRenewalStateTbl" class="dr_clearBoth">
+											<div class="dr_updatedSubsTblHeader">
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="dr_col">
+															<get:text key="UPDATED_SUBSCRIPTION"/>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="dr_futureSubRenewalStatePlan">
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="dr_productName dr_col">
+															<page:comment>Future Sub Renewal Product Name</page:comment>
+															<if:equal data="subQuantityCurrentlyBeingUpdated" value="true">
+																<span>
+																	<get:value data="futureSubRenewalStatePlan" escape="no" />
+																	(<get:text key="SUBS_PREVIOUS_QUANTITY_COLON" /> <get:value data="previousSubQuantity" escape="no" />)
+																</span>
+															</if:equal>
+															<if:equal data="subQuantityCurrentlyBeingUpdated" value="false">
+																<get:value data="futureSubRenewalStatePlan" escape="no" />
+															</if:equal>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="dr_futureSubrenewalStateDetails">
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="dr_col">
+															<div class="container-fluid">
+																<div id="dr_futureSubRenewalStateDetailsTbl">
+																	<div class="row">
+																		<div class=" col-xs-12 col-sm-4">
+																			<div class="dr_futureSubRenewalStateDetailsTermAndType dr_col">
+																				<get:value data="futureSubRenewalStateDetailsTermAndType" escape="no" />
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-8">
+																			<div class="dr_futureSubRenewalStateDetailsDesc dr_col">
+																				<get:value data="futureSubRenewalStateDetailsDesc" escape="no" />
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<loop:each list="featureGroups">
+												<div class="dr_futureSubRenewalStateGroup">
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="dr_productName dr_col">
+																<get:value data="groupName" escape="no" />
+															</div>
+														</div>
+													</div>
+												</div>
+												<loop:each list="featureDetails">
+													<div class="dr_futureSubRenewalStateGroupDetail">
+														<div class="row">
+															<div class="col-xs-12 col-sm-6">
+																<div class="dr_productName dr_futureSubRenewalStateFeature dr_col">
+																	<if:equal data="featureCurrentlyBeingAdded" value="true">
+																		<span>
+																			<get:value data="futureSubRenewalStateFeature" escape="no" /> (<get:text key="NEW_SUB_FEATURE" />)
+																		</span>
+																	</if:equal>
+																	<if:equal data="featureCurrentlyBeingAdded" value="false">
+																		<if:equal data="featureCurrentlyBeingUpdated" value="true">
+																			<span>
+																				<get:value data="futureSubRenewalStateFeature" escape="no" />
+																				(<get:text key="UPDATED_SUB_FEATURE" />&#160;<get:value data="previousFeatureQuantity" escape="no" />)
+																			</span>
+																		</if:equal>
+																		<if:equal data="featureCurrentlyBeingUpdated" value="false">
+																			<get:value data="futureSubRenewalStateFeature" escape="no" />
+																		</if:equal>
+																	</if:equal>
+																</div>
+															</div>
+															<div class="col-xs-12 col-sm-6 text-right text-nowrap">
+																<div class="dr_price dr_col">
+																	<if:equal data="featureCurrentlyBeingAdded" value="true">
+																		<span>
+																			<get:value data="featureNextRenewalPrice" escape="no" />
+																		</span>
+																	</if:equal>
+																	<if:equal data="featureCurrentlyBeingAdded" value="false">
+																		<if:equal data="featureCurrentlyBeingUpdated" value="true">
+																			<span>
+																				<get:value data="featureNextRenewalPrice" escape="no" />
+																			</span>
+																		</if:equal>
+																		<if:equal data="featureCurrentlyBeingUpdated" value="false">
+																			<get:value data="featureNextRenewalPrice" escape="no" />
+																		</if:equal>
+																	</if:equal>
+																</div>
+															</div>
+														</div>
+													</div>
+												</loop:each>
+											</loop:each>
+											<div class="dr_estimatedFutureRenewalCost">
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="dr_price dr_col">
+															<get:value data="estimatedFutureRenewalCost" escape="no" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</if:exists>
+							</page:element>
+							<page:element type="aboAutoRenewalTerms">
+								<if:exists data="displayABOAutoRenewalTerm">
+									<if:equal data="displayABOAutoRenewalTerm" value="true">
+										<if:exists data="aboAlreadyAccepted">
+											<input type="hidden" name="aboRenewLogicExists" value="true" />
+											<input type="hidden" name="aboOptedInOnCheckout" id="aboOptedInOnCheckout" value="true" />
+										</if:exists>
+										<if:notExists data="aboAlreadyAccepted">
+											<div id="dr_aboAutoRenewTermContainer">
+												<fieldset id="dr_aboAutoRenew">
+													<legend><get:text key="ADVANCED_BILLING_OPTION_TERMS_HEADLINE"/></legend>
+													<h3><get:text key="ADVANCED_BILLING_OPTION_TERMS_HEADLINE"/></h3>
+													<div id="dr_optInABOAutoRenew">
+														<div class="dr_optInAboAutoRenewTerms">
+															<div class="dr_optInAboAutoRenewTerms1">
+																<get:text key="ADVANCED_BILLING_OPTION_TERMS_1"/>
+															</div>
+															<div class="dr_optInAboAutoRenewTerms2">
+																<get:value data="ABOTerms2" escape="no"/>
+															</div>
+														</div>
+														<div class="dr_optInAboAutoRenewAction">
+															<if:exists data="aboOptedInError">
+																<span class="alert alert-danger"><get:text key="TERMS_ADVANCED_BILLING_OPTION_OPTIN_ERROR"/></span><br/>
+															</if:exists>
+															<div class="checkbox checkbox-wide">
+																<input type="hidden" name="aboRenewLogicExists" value="false" />
+																<input type="checkbox" name="aboOptedInOnCheckout" id="aboOptedInOnCheckout" />
+																<label class="dr_label" for="aboOptedInOnCheckout"><get:text key="ADVANCED_BILLING_OPTION_TERMS_AGREEMENT"/></label>
+															</div>
+														</div>
+													</div>
+												</fieldset>
+											</div>
+										</if:notExists>
+									</if:equal>
+								</if:exists>
+							</page:element>
+							<page:element type="cartButtons">
+								<if:exists data="cart">
+									<div id="dr_siteButtons">
+										<page:comment>&#160;</page:comment>
+										<!-- <page:element type="saveOrderLink">
+											<if:equal data="allowSaveOrder" value="true">
+											<div id="dr_saveOrderButton">
+												<a class="dr_button_info">
+													<page:attribute name="href">
+														<page:element type="saveOrderLinkUrl">
+															<get:path action="DisplaySavedOrderRequestPage/requisitionID."/><get:value data="orderNumber"/>
+														</page:element>
+													</page:attribute>
+													<get:text key="BTN_REQUEST_QUOTE"/>
+												</a>
+											</div>
+											</if:equal>
+                                        </page:element> -->
+                                        <if:exists data="continueShoppingLinkUrl">
+                                            <div id="dr_continueShoppingButton">
+                                                <page:comment>&#160;</page:comment>
+                                                <page:element type="page-continueShoppingLink">
+                                                    <a id="dr_continueShoppingBtn">
+                                                        <page:attribute name="href"><get:value data="continueShoppingLinkUrl"/></page:attribute>
+                                                        <get:text key="BTN_CONTINUE_SHOPPING"/>
+                                                    </a>
+                                                </page:element>
+                                            </div>
+                                        </if:exists>
+										<div id="dr_cartPaymentButtons">
+											<span id="dr_applePayBtn"><page:comment>&#160;</page:comment></span>
+                      						<span id="dr_payPalBtn"><page:comment>&#160;</page:comment></span>
+                                                
+											<if:exists data="checkoutWithPayPalButton">
+												<get:value data="checkoutWithPayPalButton" escape="no"/>
+											</if:exists>
+											<if:exists data="checkoutWithPayPalCreditButton">
+												<get:value data="checkoutWithPayPalCreditButton" escape="no"/>
+											</if:exists>
+											<if:equal data="callingPageID" value="ThreePgCheckoutShoppingCartPage">
+												<page:element type="checkoutButton">
+													<div id="dr_checkoutButton">
+														<page:element type="checkoutButtonContent">
+															<a id="dr_shoppingCartCheckoutButton" class="dr_button">
+																<page:attribute name="href">
+																	<page:element type="checkoutLinkUrl">
+																		<get:value data="secureCheckoutButtonUrl"/>
+																	</page:element>
+																</page:attribute>
+																<if:exists data="efinancingTerms">
+																	<page:attribute name="onclick">return addEfinancingParameter(this);</page:attribute>
+																</if:exists>
+																<i class="icon-lock">
+																	<page:comment>&#160;</page:comment>
+																</i>
+																<if:notEqual data="hasSubscripitonRenewalLineItem" value="true">
+																	<get:text key="BTN_CHECKOUT"/>
+																</if:notEqual>
+																<if:equal data="hasSubscripitonRenewalLineItem" value="true">
+																	<get:text key="BTN_RENEW_NOW"/>
+																</if:equal>
+																<if:notExists data="hasSubscripitonRenewalLineItem">
+																	<get:text key="BTN_CHECKOUT"/>
+																</if:notExists>
+															</a>
+														</page:element>
+													</div>
+												</page:element>
+											</if:equal>
+											<if:equal data="callingPageID" value="QuickBuyCartPage">
+												<page:element type="quickBuyCheckoutButton">
+													<div id="dr_checkoutButton">
+														<a class="dr_button">
+															<page:attribute name="href">#checkoutForm</page:attribute>
+															<i class="icon-lock">
+																<page:comment>&#160;</page:comment>
+															</i>
+															<if:notEqual data="hasSubscripitonRenewalLineItem" value="true">
+																<get:text key="BTN_CHECKOUT"/>
+															</if:notEqual>
+															<if:equal data="hasSubscripitonRenewalLineItem" value="true">
+																<get:text key="BTN_RENEW_NOW"/>
+															</if:equal>
+															<if:notExists data="hasSubscripitonRenewalLineItem">
+																<get:text key="BTN_CHECKOUT"/>
+															</if:notExists>
+														</a>
+													</div>
+												</page:element>
+											</if:equal>
+										</div>
+									</div>
+									<page:element type="stickyCheckoutButton">
+										<if:equal data="callingPageID" value="ThreePgCheckoutShoppingCartPage">
+											<div id="dr_stickyCheckoutButton" class="container visible-xs hidden">
+												<div class="row">
+													<div class="col-xs-12">
+														<page:element type="checkoutButtonContent">
+															<a id="dr_shoppingCartCheckoutButton" class="dr_button">
+																<page:attribute name="href">
+																	<page:element type="checkoutLinkUrl">
+																		<get:value data="secureCheckoutButtonUrl"/>
+																	</page:element>
+																</page:attribute>
+																<if:exists data="efinancingTerms">
+																	<page:attribute name="onclick">return addEfinancingParameter(this);</page:attribute>
+																</if:exists>
+																<i class="icon-lock">
+																	<page:comment>&#160;</page:comment>
+																</i>
+																<if:notEqual data="hasSubscripitonRenewalLineItem" value="true">
+																	<get:text key="BTN_CHECKOUT"/>
+																</if:notEqual>
+																<if:equal data="hasSubscripitonRenewalLineItem" value="true">
+																	<get:text key="BTN_RENEW_NOW"/>
+																</if:equal>
+																<if:notExists data="hasSubscripitonRenewalLineItem">
+																	<get:text key="BTN_CHECKOUT"/>
+																</if:notExists>
+															</a>
+														</page:element>
+													</div>
+												</div>
+											</div>
+										</if:equal>
+									</page:element>
+								</if:exists>
+							</page:element>
+							<page:element type="requiredLegalInfo">
+								<page:element type="efinancingTerms">
+									<if:exists data="efinancingTerms">
+										<if:equal data="hasPromoInEF" value="true">
+											<div class="dr_efinancingOption">
+												<loop:each list="efinancingTerms">
+													<div class="dr_efinancingVariationSelect">
+														<input type="radio" name="selectedEfinancingTermID">
+															<page:attribute name="id">radio_<get:value data="efinancingTermID"/></page:attribute>
+															<page:attribute name="value"><get:value data="efinancingTermID"/></page:attribute>
+															<if:exists data="selectedEfinancingTermID">
+																<page:attribute name="checked">checked</page:attribute>
+															</if:exists>
+														</input>
+														<label>
+															<page:attribute name="for">radio_<get:value data="efinancingTermID"/></page:attribute>
+															<if:exists data="monthlyPaymentAmount"><span class="dr_monthlyAmt"><get:value data="monthlyPaymentAmount"/>/<get:text key="EF_MONTH"/></span>&#160;</if:exists><get:text key="EF_FOR"/>&#160;<span class="dr_durationMonths"><get:value data="durationInMonths"/>&#160;<get:text key="EF_MONTHS"/></span>&#44;&#160;<span class="dr_apr"><get:value data="interestRatePct"/>&#160;<get:text key="EF_APR"/></span>&#44;&#160;<span class="dr_totalRepayable"><get:value data="totalRepayable"/>&#160;<get:text key="EF_TOTAL_PAYMENT"/></span>
+														</label>
+														<div class="dr_eFinancingMoreInfo">
+															<label class="dr_label" for="eFinancingMoreInfo">
+																<a>
+																	<page:attribute name="class">dr_eFinancingMoreInfoModal</page:attribute>
+																	<page:attribute name="href"><get:value data="termMoreInfoLink"/></page:attribute>
+																	<page:attribute name="data-toggle">modal</page:attribute>
+																	<page:attribute name="data-target">#drModal</page:attribute>
+																	<get:text key="MORE_INFO"/>
+																</a>
+															</label>
+														</div>
+													</div>
+												</loop:each>
+												<div class="dr_efinancingVariationSelect">
+													<input type="radio" name="selectedEfinancingTermID">
+														<page:attribute name="id">radio_full</page:attribute>
+														<page:attribute name="value"></page:attribute>
+														<if:notExists data="selectedEfinancingTermID">
+															<page:attribute name="checked">checked</page:attribute>
+														</if:notExists>
+													</input>
+													<label>
+														<page:attribute name="for">radio_full</page:attribute>
+														<if:equal data="displayPriceWithVat" value="false">
+															<get:value data="subTotal"/>
+														</if:equal>
+														<if:notEqual data="displayPriceWithVat" value="false">
+															<get:value data="subTotalWithVat"/>
+														</if:notEqual>
+													</label>
+												</div>
+											</div>
+										</if:equal>
+									</if:exists>
+								</page:element>
+								<page:element type="priceDisclaimer">
+									<p id="dr_cartPricingDisclaimer" class="dr_clearBoth"><get:text key="CART_PRICE_DISCLAIMER"/></p>
+								</page:element>
+								<page:element type="taxInfo">
+									<if:notEqual data="locale" value="en_US">
+										<if:notEqual data="locale" value="ja_JP">
+											<p id="taxInfo">
+												<get:text key="TAX_INFO"/>
+												<page:element type="taxInfoLink">
+													<a>
+														<page:attribute name="href">
+															<page:element type="taxInfoLinkUrl">
+																<get:path action="DisplayPage/id.TaxInfoPopupPage"/>
+															</page:element>
+														</page:attribute>
+														<page:attribute name="data-toggle">modal</page:attribute>
+														<page:attribute name="data-target">#drModal</page:attribute>
+														<get:text key="CLICK_HERE"/>
+													</a>
+												</page:element>
+											</p>
+										</if:notEqual>
+									</if:notEqual>
+								</page:element>
+								<!-- <page:element type="termsAndConditionsFooter"/> -->
+							</page:element>
+							<page:element type="testOrderOptions"/>
+						</form:post>
+					</page:element>
+				</if:exists>
+			</page:element>
+    </div>
+  </div>
+</page:element>
