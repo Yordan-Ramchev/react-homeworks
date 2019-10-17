@@ -1,63 +1,57 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class PostListItem extends Component {
-  state = {
-    isHidden: false,
-    isLiked: false,
-    votes: this.props.votes
+const Card = props => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [votes, setVotes] = useState(props.votes);
+
+  const hideItem = () => {
+    setIsHidden(true);
   };
 
-  // hidePost = () => {
-  //   this.setState({ isHidden: true });
-  // };
-
-  likePost = () => {
-    let getVotes = this.state.votes;
-
-    if (!this.state.isLiked) {
-      this.setState({ isLiked: true });
-      this.setState({ votes: getVotes + 1 });
+  const likePost = () => {
+    if (!isLiked) {
+      setIsLiked(true);
+      setVotes(votes + 1);
     } else {
-      this.setState({ isLiked: false });
-      this.setState({ votes: getVotes - 1 });
+      setIsLiked(false);
+      setVotes(votes - 1);
     }
   };
 
-  render() {
-    return (
-      <div className={"card " + (this.state.isHidden ? "hide" : "")}>
+  return (
+    <div className={"column " + (isHidden ? "hide" : "")}>
+      <div className="card">
         <div className="card-content">
           <div className="media">
             <div className="media-content">
-              <p className="title is-4">{this.props.title}</p>
-              <p className="subtitle is-6">{this.props.tagline}</p>
+              <p className="title is-4">{props.title}</p>
+              <p className="subtitle is-6">{props.tagline}</p>
             </div>
           </div>
           <div className="content">
-            {this.state.votes === 0 ? (
+            {votes === 0 ? (
               <p>Be the first to like this!</p>
             ) : (
-              <span>{this.state.votes} Likes</span>
+              <span>{votes} Likes</span>
             )}
             <button
               className={
                 "button " +
-                (this.state.isLiked
-                  ? "has-background-danger has-text-white"
-                  : "")
+                (isLiked ? "has-background-danger has-text-white" : "")
               }
-              onClick={this.likePost}
+              onClick={() => likePost()}
             >
               &hearts;
             </button>
-            <button className="button" onClick={() =>this.props.hidePost(this.props.id)}>
+            <button className="button" onClick={() => hideItem()}>
               Remove
             </button>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default PostListItem;
+export default Card;
