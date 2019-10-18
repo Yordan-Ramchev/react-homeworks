@@ -3,7 +3,7 @@ import Card from "./../Card";
 
 class List extends Component {
   state = {
-    sectionTitle: this.props.sectionTitle,
+    sectionTitle: this.props.title,
     items: this.props.items
   };
 

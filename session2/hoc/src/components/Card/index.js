@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import CardOnSteroids from "./../HoC";
 
 class Card extends Component {
-  state = {
-    votes: this.props.votes,
-    isHidden: false,
-    isLiked: false
-  };
   render() {
+    const likeItem = this.props.likeItem;
+    const hideItem = this.props.hideItem;
+
     return (
-      <div className={"column " + (this.state.isHidden ? "hide" : "")}>
+      <div className={"column " + (this.props.isHidden ? "hide" : "")}>
         <div className="card">
           <div className="card-content">
             <div className="media">
@@ -19,25 +17,25 @@ class Card extends Component {
               </div>
             </div>
             <div className="content">
-              {this.state.votes === 0 ? (
+              {this.props.votes === 0 ? (
                 <p>Be the first to like this!</p>
               ) : (
-                <span>{this.state.votes} Likes</span>
+                <span>{this.props.votes} Likes</span>
               )}
               <button
                 className={
                   "button " +
-                  (this.state.isLiked
+                  (this.props.isLiked
                     ? "has-background-danger has-text-white"
                     : "")
                 }
-                // onClick={() => likePost()}
+                onClick={likeItem}
               >
                 &hearts;
               </button>
               <button
                 className="button"
-                //  onClick={() => hideItem()}
+                onClick={hideItem}
               >
                 Remove
               </button>

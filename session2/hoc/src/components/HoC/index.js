@@ -2,15 +2,11 @@ import React, { Component } from "react";
 
 const CardOnSteroids = OriginalCard => {
   class BoostedCard extends Component {
-    constructor(props) {
-      super(props);
-
-      this.state = {
-        votes: this.props.votes,
-        isHidden: false,
-        isLiked: false
-      };
-    }
+    state = {
+      votes: this.props.votes,
+      isHidden: false,
+      isLiked: false
+    };
 
     hideItem = () => {
       this.setState(prevState => {
@@ -22,9 +18,7 @@ const CardOnSteroids = OriginalCard => {
       });
     };
 
-    like = () => {
-      console.log("test");
-
+    likeItem = () => {
       if (!this.state.isLiked) {
         this.setState(prevState => {
           return {
@@ -46,29 +40,15 @@ const CardOnSteroids = OriginalCard => {
 
     render() {
       return (
-        <OriginalCard>
-          <div className="content">
-            {this.state.votes === 0 ? (
-              <p>Be the first to like this!</p>
-            ) : (
-              <span>{this.state.votes} Likes</span>
-            )}
-            <button
-              className={
-                "button " +
-                (this.state.isLiked
-                  ? "has-background-danger has-text-white"
-                  : "")
-              }
-              onClick={() => this.like()}
-            >
-              &hearts;
-            </button>
-            <button className="button" onClick={() => this.hideItem()}>
-              Remove
-            </button>
-          </div>
-        </OriginalCard>
+        <OriginalCard 
+          title={this.props.title}
+          tagline={this.props.tagline}
+          votes={this.state.votes} 
+          isHidden={this.state.isHidden} 
+          isLiked={this.state.isLiked}
+          likeItem={this.likeItem}
+          hideItem={this.hideItem}
+        />
       );
     }
   }

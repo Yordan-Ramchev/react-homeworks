@@ -29,7 +29,7 @@ main {
   flex-grow: 1;
   width: 33.33%;
   max-width: 33.33%;
-  flex-basis: auto;
+  flex-basis: auto !important;
 }
 
 .content {
