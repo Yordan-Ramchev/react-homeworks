@@ -7,10 +7,6 @@ import "./App.css";
 function App() {
   const [posts, setPosts] = useState(POSTS);
 
-  useEffect(() => {
-    setPosts(POSTS);
-  }, []);
-
   return (
     <main>
       <PostList posts={posts} />
