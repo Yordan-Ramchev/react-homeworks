@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 
-const Card = props => {
+type ICard = {
+  id: number;
+  title: string;
+  tagline: string;
+  votes: number;
+}
+
+const Card = ({ id, title, tagline, votes }: ICard) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [votes, setVotes] = useState(props.votes);
+  const [cardVotes, setCardVotes] = useState(votes);
 
   const hideItem = () => {
     setIsHidden(true);
@@ -12,10 +19,10 @@ const Card = props => {
   const likePost = () => {
     if (!isLiked) {
       setIsLiked(true);
-      setVotes(votes + 1);
+      setCardVotes(cardVotes + 1);
     } else {
       setIsLiked(false);
-      setVotes(votes - 1);
+      setCardVotes(cardVotes - 1);
     }
   };
 
@@ -25,15 +32,15 @@ const Card = props => {
         <div className="card-content">
           <div className="media">
             <div className="media-content">
-              <p className="title is-4">{props.title}</p>
-              <p className="subtitle is-6">{props.tagline}</p>
+              <p className="title is-4">{title}</p>
+              <p className="subtitle is-6">{tagline}</p>
             </div>
           </div>
           <div className="content">
-            {votes === 0 ? (
+            {cardVotes === 0 ? (
               <p>Be the first to like this!</p>
             ) : (
-              <span>{votes} Likes</span>
+              <span>{cardVotes} Likes</span>
             )}
             <button
               className={

@@ -42,5 +42,11 @@ export default [
     title: "Crudo",
     tagline: "Tomato sauce, mozzarella and Parma ham",
     votes: 24
+  },
+  {
+    id: 7,
+    title: "Francescana",
+    tagline: "Tomato sauce, mozzarella, porcino mushrooms, ham, and parmesan",
+    votes: 24
   }
 ];

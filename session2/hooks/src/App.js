@@ -1,5 +1,5 @@
 import React from "react";
-import List from "./components/List";
+import List from "./components/List/index";
 import "bulma/css/bulma.css";
 import "./App.css";
 import data from "./data";

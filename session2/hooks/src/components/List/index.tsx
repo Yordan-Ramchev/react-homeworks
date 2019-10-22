@@ -1,9 +1,20 @@
 import React, { useState } from "react";
-import Card from "./../Card";
+import Card from "../Card/index";
 
-const List = props => {
-  const [sectionTitle] = useState(props.title);
-  const [items] = useState(props.items);
+type IItem = {
+  id: number;
+  title: string;
+  tagline: string;
+  votes: number;
+}
+
+type ITitle = {
+  count: string;
+}
+
+const List = (props: any) => {
+  const [sectionTitle] = useState<ITitle>(props.title);
+  const [items] = useState<IItem[]>(props.items);
 
   return (
     <section className="post-list">
