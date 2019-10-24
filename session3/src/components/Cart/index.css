@@ -1,0 +1,9 @@
+.cart__qtn {
+    display: flex;
+    align-items: center;
+}
+
+.cart__qtn-value {
+    margin-left: 10px;
+    margin-right: 10px;
+}
