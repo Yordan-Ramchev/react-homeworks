@@ -22,18 +22,8 @@ export default function cartReducer(state: ICart = [], action: any) {
   }
 
   if (action.type === 'cart/remove') {
-    if (state.find(item => item.pizzaId === action.payload)) {
-      return state.map(item =>
-        item.pizzaId === action.payload
-          ? {
-              ...item,
-              count: item.count + 1,
-            }
-          : item,
-      );
-    } else {
-      return [...state];
-    }
+    let itemIndex = state.findIndex(item => item.pizzaId === action.payload);
+    state.splice(itemIndex, 1);
   }
 
   return state;
