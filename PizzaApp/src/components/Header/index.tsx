@@ -1,8 +1,12 @@
 
 import React from "react";
+import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
+import {getCartSize} from './../../modules/cart'; 
 
 export default function Header() {
+  const cartSize = useSelector(getCartSize);
+
   return (
     <header>
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -31,7 +35,7 @@ export default function Header() {
           <div className="navbar-item">
             <div className="buttons">
               <Link className="button is-light" to="/shopping-cart">
-                Shopping Cart
+                Shopping Cart ({cartSize})
               </Link>
             </div>
           </div>

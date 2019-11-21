@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import MenuItem from './pages/MenuItem';
@@ -14,22 +15,24 @@ const App: React.FC = () => {
   return (
     <React.Fragment>
       <Header />
-      <main>
+      <main className="content-wrapper">
         <Switch>
-          <Route exact path="/">
+          <Route exact strict path="/">
             <Home />
           </Route>
-          <Route path="/menu">
+          <Route exact path="/menu">
             <Menu />
           </Route>
-          <Route path={`/menu/:pizzaId`} children={<MenuItem />} />
-          <Route path="/contact-us">
+          <Route exact path="/menu/:pizzaId">
+            <MenuItem />
+          </Route>
+          <Route exact path="/contact-us">
             <ContactUs />
           </Route>
-          <Route path="/our-story">
+          <Route exact path="/our-story">
             <OurStory />
           </Route>
-          <Route path="/shopping-cart">
+          <Route exact path="/shopping-cart">
             <ShoppingCart />
           </Route>
           <Route path="*">
@@ -37,6 +40,7 @@ const App: React.FC = () => {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </React.Fragment>
   );
 }

@@ -23,9 +23,6 @@ interface IAction {
 const CART_ADD = 'cart/add';
 const CART_REMOVE = 'cart/remove';
 
-
-
-
 export default createReducer<ICartReducer, IAction>([], {
   [CART_ADD]: (state, action) => {
     if (state.find(item => item.pizzaId === action.payload)) {

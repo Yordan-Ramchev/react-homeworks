@@ -1,8 +1,15 @@
 import React from 'react';
 import api from '../utils/api';
 import { IStore } from './index';
-import { getEntity, setEntities, getEntityList } from './entities';
-import { pageLoading, pageLoaded, getPage, isPageLoaded } from './page';
+import { getEntity, setEntity, setEntities, getEntityList } from './entities';
+import {
+  pageLoading,
+  pageLoaded,
+  getPagePayload,
+  isPageLoaded,
+  pageError,
+  getPage,
+} from './page';
 import { useDispatch, useSelector } from 'react-redux';
 
 // --------------------------------------------------------
@@ -12,8 +19,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export interface IPizza {
   id: string;
   name: string;
-  description: string,
-  thumb: string,
+  description: string;
+  thumb: string;
   price: number;
 }
 
@@ -22,7 +29,8 @@ export interface IPizza {
 // --------------------------------------------------------
 
 const TYPE = 'pizza';
-const PAGE = 'pizza/index';
+const INDEX = 'pizza/index';
+const SHOW = 'pizza/show';
 
 // --------------------------------------------------------
 // Actions
@@ -30,12 +38,27 @@ const PAGE = 'pizza/index';
 
 export function fetchPizzas() {
   return async (dispatch: any) => {
-    dispatch(pageLoading(PAGE));
+    dispatch(pageLoading(INDEX));
 
     const pizzas = (await api.listPizzas()) as IPizza[];
 
     dispatch(setEntities(TYPE, pizzas));
-    dispatch(pageLoaded(PAGE, pizzas.map(p => p.id)));
+    dispatch(pageLoaded(INDEX, pizzas.map(p => p.id)));
+  };
+}
+
+export function fetchPizza(id: string) {
+  return async (dispatch: any) => {
+    dispatch(pageLoading(SHOW));
+
+    const pizza = (await api.getPizza(id)) as IPizza | null;
+
+    if (pizza) {
+      dispatch(setEntity(TYPE, pizza));
+      dispatch(pageLoaded(SHOW, pizza.id));
+    } else {
+      dispatch(pageError(SHOW, 404));
+    }
   };
 }
 
@@ -44,11 +67,11 @@ export function fetchPizzas() {
 // --------------------------------------------------------
 
 export function isListLoaded(store: IStore) {
-  return isPageLoaded(store, PAGE);
+  return isPageLoaded(store, INDEX);
 }
 
 export function getPizzasIds(store: IStore): string[] {
-  return getPage(store, PAGE) || [];
+  return getPagePayload(store, INDEX) || [];
 }
 
 export function getPizzas(store: IStore): IPizza[] {
@@ -70,5 +93,38 @@ export function usePizzaIndexFetch() {
     dispatch(fetchPizzas());
   }, [dispatch]);
 
-  return useSelector<IStore, any>(store => isPageLoaded(store, PAGE));
+  return useSelector<IStore, any>(store => isPageLoaded(store, INDEX));
+}
+
+export function usePizzaShowFetch(id: string): 'loading' | 'error' | IPizza {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchPizzas());
+    dispatch(fetchPizza(id));
+  }, [dispatch, id]);
+
+  return useSelector<IStore, any>(store => {
+    const page = getPage(store, SHOW);
+
+    if (!page) {
+      return 'error';
+    }
+
+    if (page.isLoading) {
+      return 'loading';
+    }
+
+    if (page.error || !page.payload) {
+      return 'error';
+    }
+
+    const pizza = getPizza(store, page.payload as any);
+
+    if (!pizza) {
+      return 'error';
+    }
+
+    return pizza;
+  });
 }

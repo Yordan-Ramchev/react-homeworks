@@ -1,10 +1,10 @@
-
 .card {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: all .2s ease-in;
+    padding: 24px;
 }
 
 .card:hover {
@@ -22,12 +22,13 @@
     justify-content: space-between;
 }
 
-.card .content {
+.content {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.content .title.is-3 {
-    margin-bottom: 0;
+.title {
+    /** should not use important :( **/
+    margin-bottom: 0 !important;
 } 

@@ -32,38 +32,38 @@ export default createReducer<IPageReducer, any>(
     payload: null,
   },
   {
-  [PAGE_LOADING]: (state, action) => ({
-    name: action.name,
-    isLoading: true,
-    error: null,
-    payload: null,
-  }),
-  [PAGE_LOADED]: (state, action) => ({
-    name: action.name,
-    isLoading: false,
-    error: null,
-    payload: action.payload,
-  }),
-  [PAGE_ERROR]: (state, action) => ({
-    name: action.name,
-    isLoading: false,
-    error: action.payload,
-    payload: null,
-  }),
-  [PAGE_UPDATE]: (state, action) =>
-    state.name === action.name
-      ? {
-          name: action.name,
-          isLoading: false,
-          error: null,
-          payload: { ...(state.payload || {}), ...action.payload },
-        }
-      : {
-          name: action.name,
-          isLoading: false,
-          error: null,
-          payload: action.payload,
-        },
+    [PAGE_LOADING]: (state, action) => ({
+      name: action.name,
+      isLoading: true,
+      error: null,
+      payload: null,
+    }),
+    [PAGE_LOADED]: (state, action) => ({
+      name: action.name,
+      isLoading: false,
+      error: null,
+      payload: action.payload,
+    }),
+    [PAGE_ERROR]: (state, action) => ({
+      name: action.name,
+      isLoading: false,
+      error: action.payload,
+      payload: null,
+    }),
+    [PAGE_UPDATE]: (state, action) =>
+      state.name === action.name
+        ? {
+            name: action.name,
+            isLoading: false,
+            error: null,
+            payload: { ...(state.payload || {}), ...action.payload },
+          }
+        : {
+            name: action.name,
+            isLoading: false,
+            error: null,
+            payload: action.payload,
+          },
   },
 );
 
@@ -108,7 +108,21 @@ export function pageUpdate(name: string, payload: any) {
 
 export function getPage(store: { page: IPageReducer }, name: string) {
   if (store.page.name === name) {
+    return store.page;
+  }
+  return null;
+}
+
+export function getPagePayload(store: { page: IPageReducer }, name: string) {
+  if (store.page.name === name) {
     return store.page.payload;
+  }
+  return null;
+}
+
+export function getPageError(store: { page: IPageReducer }, name: string) {
+  if (store.page.name === name) {
+    return store.page.error;
   }
   return null;
 }
