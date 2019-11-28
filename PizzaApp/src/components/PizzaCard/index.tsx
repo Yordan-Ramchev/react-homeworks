@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { IStore } from '../../modules';
 import { getPizza } from '../../modules/pizzas';
-import AddToCart from '../../components/PizzaAddToCart'
+import AddToCart from '../../components/PizzaAddToCart';
+import CurrencyFormatter from '../../components/CurrencyFormatter'
 import styles from './styles.module.css';
 
 export default function PizzaCard({ pizzaId }: { pizzaId: string }) {
@@ -26,12 +27,13 @@ export default function PizzaCard({ pizzaId }: { pizzaId: string }) {
         </div>
         <div className={styles.content}>
           <strong className={`${styles.title} title is-3`}>
-            {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(pizza.price)}
+            <CurrencyFormatter price={pizza.price} />
           </strong>
           
           <AddToCart 
             pizza={pizza} 
             buttonText={'Add to cart'} 
+            type={''}
           />
         </div>
       </div>

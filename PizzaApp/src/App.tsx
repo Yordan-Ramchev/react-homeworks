@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import MenuItem from './pages/MenuItem';
-import ContactUs from './pages/ContactUs';
+import Contact from './pages/Contact';
 import OurStory from './pages/OurStory';
 import ShoppingCart from './pages/ShoppingCart';
 import NoMatch from './pages/NoMatch';
@@ -27,7 +27,7 @@ const App: React.FC = () => {
             <MenuItem />
           </Route>
           <Route exact path="/contact-us">
-            <ContactUs />
+            <Contact />
           </Route>
           <Route exact path="/our-story">
             <OurStory />
