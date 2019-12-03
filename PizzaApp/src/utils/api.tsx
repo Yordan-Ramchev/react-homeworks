@@ -26,6 +26,7 @@ const DATA: IPizza[] = [
       description: 'Tomato sauce, mozzarella, and oregano',
       thumb: '//www.dominos.bg/gallery/fmobile/1265medium.png',
       price: 6.5,
+      slug: 'margherita'
     },
     {
       id: '1',
@@ -33,6 +34,7 @@ const DATA: IPizza[] = [
       description: 'Tomato sauce, garlic and basil',
       thumb: '//www.dominos.bg/gallery/fmobile/1344medium.png',
       price: 7.2,
+      slug: 'marinara'
     },
     {
       id: '2',
@@ -41,29 +43,33 @@ const DATA: IPizza[] = [
         'Tomato sauce, mozzarella, mushrooms, ham, artichokes, olives, and oregano',
       thumb: '//www.dominos.bg/gallery/fmobile/1364medium.png',
       price: 7.6,
+      slug: 'quattro-stagioni'
     },
     {
       id: '3',
-      name: 'CHORIZANA',
+      name: 'Chorizana',
       description:
         'Tomato Sauce, Feta Cheese, Mozzarella, Chicken, Choriso, Fresh tomato',
       thumb: '//www.dominos.bg/gallery/fmobile/1361medium.png',
       price: 7.6,
+      slug: 'chorizana'
     },
     {
       id: '4',
-      name: 'MEDITERRANEO',
+      name: 'Mediterraneo',
       description:
         'Tomato Sauce, Mozzarella, Feta Cheese, Fresh tomato, Black Olives, Fresh green peppers',
       thumb: '//www.dominos.bg/gallery/fmobile/1314medium.png',
       price: 8.2,
+      slug: 'mediterraneo'
     },
     {
       id: '5',
-      name: 'CHICKENITA',
+      name: 'Chickenita',
       description:
         'Tomato Sauce, Mozzarella, Emmental, Pepperoni, Chicken, Fresh tomato',
       thumb: '//www.dominos.bg/gallery/fmobile/1341medium.png',
       price: 8.2,
+      slug: 'chickenita'
     },
   ];

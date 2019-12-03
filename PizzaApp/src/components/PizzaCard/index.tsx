@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 import { IStore } from '../../modules';
 import { getPizza } from '../../modules/pizzas';
 import AddToCart from '../../components/PizzaAddToCart';
-import CurrencyFormatter from '../../components/CurrencyFormatter'
+import CurrencyFormatter from '../../components/CurrencyFormatter';
 import styles from './styles.module.css';
 
 export default function PizzaCard({ pizzaId }: { pizzaId: string }) {
   const pizza = useSelector<IStore, any>(store => getPizza(store, pizzaId));
 
   return (
-    <Link className={`${styles.card} card`} to={`/menu/${pizza.id}`}>
+    <Link className={`${styles.card} card`} to={`menu/${pizza.id}`}>
       <div className="pizza-image">
         <figure className="image is-4by3">
           <img src={pizza.thumb} alt=""/>

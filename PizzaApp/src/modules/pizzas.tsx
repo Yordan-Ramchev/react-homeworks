@@ -22,6 +22,7 @@ export interface IPizza {
   description: string;
   thumb: string;
   price: number;
+  slug: string;
 }
 
 // --------------------------------------------------------

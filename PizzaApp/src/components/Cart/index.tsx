@@ -1,8 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { IPizza } from '../../modules/pizzas';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeFromCart, getCart, getCartPrice } from '../../modules/cart';
+import { getCart, getCartPrice } from '../../modules/cart';
+import PizzaAddToCart from '../PizzaAddToCart';
+import PizzaRemoveFromCart from '../PizzaRemoveFromCart';
 import CurrencyFormatter from '../CurrencyFormatter';
 
 export default function Cart() {
@@ -19,7 +20,6 @@ export default function Cart() {
               <th>Pizza Name</th>
               <th>Quantity</th>
               <th className="has-text-right">Price</th>
-              <th></th>
             </tr>
           </thead>
         <tbody>
@@ -28,13 +28,14 @@ export default function Cart() {
               <td>
                 <img src={item.pizza.thumb} alt="" width="150" />
               </td>
-              <td>{item.pizza.name}</td>
-              <td>{item.count}</td>
+              <td>{item.pizza.name} <br/> {item.pizza.description} </td>
+              <td>
+                <PizzaAddToCart pizza={item.pizza} buttonText={'+'} type={'is-small'} />
+                {item.count}
+                <PizzaRemoveFromCart pizza={item.pizza} buttonText={'-'} type={'is-small'} />
+              </td>
               <td className="has-text-right">
                 <CurrencyFormatter price={item.pizza.price * item.count} />
-              </td>
-              <td>
-                <RemoveFromCart pizza={item.pizza} />
               </td>
             </tr>
           ))}
@@ -47,10 +48,10 @@ export default function Cart() {
             <td className="has-text-right">
               <CurrencyFormatter price={totalPrice} />
             </td>
-            <td></td>
           </tr>
         </tfoot>
       </table>
+
     ) : (
       <section className="empty-cart">
         <h4>
@@ -63,9 +64,4 @@ export default function Cart() {
     )}
     </>
   );
-}
-
-function RemoveFromCart({ pizza }: { pizza: IPizza }) {
-  const dispatch = useDispatch();
-  return <button onClick={() => dispatch(removeFromCart(pizza))}>-</button>;
 }

@@ -9,6 +9,7 @@ import MenuItem from './pages/MenuItem';
 import Contact from './pages/Contact';
 import OurStory from './pages/OurStory';
 import ShoppingCart from './pages/ShoppingCart';
+import PaymentInfo from './pages/PaymentInfo';
 import NoMatch from './pages/NoMatch';
 
 const App: React.FC = () => {
@@ -34,6 +35,9 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/shopping-cart">
             <ShoppingCart />
+          </Route>
+          <Route exact path="/payment-info">
+            <PaymentInfo />
           </Route>
           <Route path="*">
             <NoMatch />

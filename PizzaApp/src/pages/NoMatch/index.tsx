@@ -3,12 +3,14 @@ import React from 'react';
 const NoMatch = () => {
 
   return (
-    <div>
-      <h3>
-        The page you are looking:
-        Could not be found :(
-      </h3>
-    </div>
+    <section className="section">
+      <div className="container">
+        <h3>
+          The page you are looking
+          could not be found :(
+        </h3>
+      </div>
+    </section>
   );
 }
 
