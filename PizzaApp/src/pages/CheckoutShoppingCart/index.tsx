@@ -1,7 +1,7 @@
 import React from 'react';
 import Cart from '../../components/Cart';
-import { usePizzaIndexFetch } from './../../modules/pizzas';
-import Loading from './../../components/Loading';
+import { usePizzaIndexFetch } from '../../modules/pizzas';
+import Loading from '../../components/Loading';
 import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {

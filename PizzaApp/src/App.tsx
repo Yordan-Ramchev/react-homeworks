@@ -8,8 +8,10 @@ import Menu from './pages/Menu';
 import MenuItem from './pages/MenuItem';
 import Contact from './pages/Contact';
 import OurStory from './pages/OurStory';
-import ShoppingCart from './pages/ShoppingCart';
-import PaymentInfo from './pages/PaymentInfo';
+import CheckoutShoppingCart from './pages/CheckoutShoppingCart';
+import CheckoutPaymentInfo from './pages/CheckoutPaymentInfo';
+import CheckoutOrderReview from './pages/CheckoutOrderReview';
+import CheckoutThankYou from './pages/CheckoutOrderReview';
 import NoMatch from './pages/NoMatch';
 
 const App: React.FC = () => {
@@ -34,10 +36,16 @@ const App: React.FC = () => {
             <OurStory />
           </Route>
           <Route exact path="/shopping-cart">
-            <ShoppingCart />
+            <CheckoutShoppingCart />
           </Route>
           <Route exact path="/payment-info">
-            <PaymentInfo />
+            <CheckoutPaymentInfo />
+          </Route>
+          <Route exact path="/order-review">
+            <CheckoutOrderReview />
+          </Route>
+          <Route exact path="/thank-you">
+            <CheckoutThankYou />
           </Route>
           <Route path="*">
             <NoMatch />
