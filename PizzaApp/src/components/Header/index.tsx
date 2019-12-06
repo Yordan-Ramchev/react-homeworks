@@ -10,11 +10,6 @@ export default function Header() {
   return (
     <header>
       <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <NavLink className="navbar-item" to="/">
-            <img src={"https://www.x-portpizzeria.ch/wp-content/uploads/2016/10/x-port-logo-lockup-400.png"} alt={"Pizza webpage for training"}/>
-          </NavLink>
-        </div>
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <NavLink className="navbar-item" to="/">

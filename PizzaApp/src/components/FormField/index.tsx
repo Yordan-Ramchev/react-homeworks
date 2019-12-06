@@ -2,7 +2,7 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
 
-export const Input = (name: any, placeholder: any) => {
+export const Input = ({ name, placeholder, touched, errors}: { name: string, placeholder: string, touched: any, errors: any }) => {
   return (
     <div className="field">
       <div className="control">
@@ -10,7 +10,11 @@ export const Input = (name: any, placeholder: any) => {
           type="text"
           name={name}
           placeholder={placeholder}
-          className={`input is-primary`}
+          className={`input is-primary ${
+            touched.name && errors.name
+              ? "is-invalid"
+              : ""
+          }`}
         />
         <ErrorMessage
           component="div"
