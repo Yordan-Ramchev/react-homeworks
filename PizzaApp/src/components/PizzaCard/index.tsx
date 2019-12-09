@@ -7,12 +7,13 @@ import { getPizza } from '../../modules/pizzas';
 import AddToCart from '../../components/PizzaAddToCart';
 import CurrencyFormatter from '../../components/CurrencyFormatter';
 import styles from './styles.module.css';
+import paths from '../../routes';
 
 export default function PizzaCard({ pizzaId }: { pizzaId: string }) {
   const pizza = useSelector<IStore, any>(store => getPizza(store, pizzaId));
 
   return (
-    <Link className={`${styles.card} card`} to={`menu/${pizza.id}`}>
+    <Link className={`${styles.card} card`} to={paths.menuItem(pizza)}>
       <div className="pizza-image">
         <figure className="image is-4by3">
           <img src={pizza.thumb} alt=""/>

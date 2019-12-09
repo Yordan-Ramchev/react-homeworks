@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import paths from '../../routes';
 
 const OrderReview = () => {
   return (
@@ -7,8 +8,8 @@ const OrderReview = () => {
       <div className="container">
         <h1 className="title">Checkout</h1>
         Order Info here
-
-        <Link className="button is-primary" to="/thank-you">
+        <br/>
+        <Link className="button is-primary" to={paths.checkoutThankYou}>
           Submit Order
         </Link>
       </div>

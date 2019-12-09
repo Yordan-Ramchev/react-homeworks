@@ -11,7 +11,7 @@ import OurStory from './pages/OurStory';
 import CheckoutShoppingCart from './pages/CheckoutShoppingCart';
 import CheckoutPaymentInfo from './pages/CheckoutPaymentInfo';
 import CheckoutOrderReview from './pages/CheckoutOrderReview';
-import CheckoutThankYou from './pages/CheckoutOrderReview';
+import CheckoutThankYou from './pages/CheckoutThankYou';
 import NoMatch from './pages/NoMatch';
 
 const App: React.FC = () => {
@@ -35,16 +35,16 @@ const App: React.FC = () => {
           <Route exact path="/our-story">
             <OurStory />
           </Route>
-          <Route exact path="/shopping-cart">
+          <Route exact path="/checkout/shopping-cart">
             <CheckoutShoppingCart />
           </Route>
-          <Route exact path="/payment-info">
+          <Route exact path="/checkout/payment-info">
             <CheckoutPaymentInfo />
           </Route>
-          <Route exact path="/order-review">
+          <Route exact path="/checkout/order-review">
             <CheckoutOrderReview />
           </Route>
-          <Route exact path="/thank-you">
+          <Route exact path="/checkout/thank-you">
             <CheckoutThankYou />
           </Route>
           <Route path="*">

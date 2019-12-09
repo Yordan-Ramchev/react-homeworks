@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Formik, Form } from "formik";
 import PaymentSchema from './schema';
-import { Input } from "../../components/FormField";
+import { Input } from '../../components/FormField';
 import { Redirect } from 'react-router';
+import paths from '../../routes';
 
 const PaymentInfo = () => {
-
   const [redirect, setRedirect] = useState(false);
 
   if (redirect) {
-    return <Redirect push to="/order-review" />;
+    return <Redirect push to={paths.checkoutOrderReview()} />;
   }
 
   return (
